@@ -1,0 +1,61 @@
+.Travel-bg {
+  background: url("../../../public/assets/Images/travelHero.jpg") no-repeat
+    center center/cover;
+}
+
+.overlay-black-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 0;
+}
+
+.category-content {
+  z-index: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 70px;
+}
+
+.category-header {
+  width: fit-content;
+}
+
+.category-header span {
+  width: 100%;
+  display: block;
+  height: 5px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.category-content p,
+.category-content h1,
+.category-content h4 {
+  color: white;
+}
+
+.features {
+  display: flex;
+  align-items: start;
+  gap: 56px;
+  padding: 24px 0;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  max-width: 200px;
+  gap: 12px;
+}
+
+.feature img {
+  width: 36px;
+  height: 36px;
+}

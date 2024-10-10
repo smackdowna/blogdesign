@@ -13,10 +13,14 @@ import figmaLogo from "./Icons/figma-logo.svg";
 import menu from "./Icons/menu.svg";
 import close from "./Icons/close.svg";
 import searchIconBlue from "./Icons/searchBlue.svg";
+import travelIcon1 from "./Icons/travelIcon1.svg";
+import travelIcon2 from "./Icons/travelIcon2.svg";
+import travelIcon3 from "./Icons/travelIcon3.svg";
 
 // Importing images
 import heroImage from "./Images/hero-image.png";
 import featuredPostImg from "./Images/featured-post.png";
+import travelHeroImg from "./Images/travelHero.jpg";
 
 export const ICONS = {
     logo,
@@ -33,10 +37,14 @@ export const ICONS = {
     menu,
     close,
     searchIconBlue,
+    travelIcon1,
+    travelIcon2,
+    travelIcon3
  
 }
 
 export const IMAGES = {
     heroImage,
     featuredPostImg,
+    travelHeroImg
 }
