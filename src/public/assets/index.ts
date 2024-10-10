@@ -12,6 +12,7 @@ import instagramLogo from "./Icons/instagram-alt-logo.svg";
 import figmaLogo from "./Icons/figma-logo.svg";
 import menu from "./Icons/menu.svg";
 import close from "./Icons/close.svg";
+import searchIconBlue from "./Icons/searchBlue.svg";
 
 // Importing images
 import heroImage from "./Images/hero-image.png";
@@ -31,6 +32,7 @@ export const ICONS = {
     figmaLogo,
     menu,
     close,
+    searchIconBlue,
  
 }
 
