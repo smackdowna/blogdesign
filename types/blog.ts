@@ -1,11 +1,13 @@
 // src/types/blog.ts
 
+import { StaticImageData } from "next/image";
+
 export interface Blog {
     title: string;
     description: string;
     author: string;
-    authorImage: string; // You may want to change this to StaticImageData if using Next.js Image component
+    authorImage: string | StaticImageData; // You may want to change this to StaticImageData if using Next.js Image component
     date: string;
     tags: string[];
-    imageUrl: string; // You may want to change this to StaticImageData if using Next.js Image component
+    imageUrl: string | StaticImageData; // You may want to change this to StaticImageData if using Next.js Image component
 }
