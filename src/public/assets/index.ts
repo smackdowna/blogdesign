@@ -16,11 +16,13 @@ import searchIconBlue from "./Icons/searchBlue.svg";
 import travelIcon1 from "./Icons/travelIcon1.svg";
 import travelIcon2 from "./Icons/travelIcon2.svg";
 import travelIcon3 from "./Icons/travelIcon3.svg";
+import angleDown from "./Icons/angle-down.svg";
 
 // Importing images
 import heroImage from "./Images/hero-image.png";
 import featuredPostImg from "./Images/featured-post.png";
 import travelHeroImg from "./Images/travelHero.jpg";
+import author from "./Images/author.jpg";
 
 export const ICONS = {
     logo,
@@ -39,12 +41,14 @@ export const ICONS = {
     searchIconBlue,
     travelIcon1,
     travelIcon2,
-    travelIcon3
+    travelIcon3,
+    angleDown
  
 }
 
 export const IMAGES = {
     heroImage,
     featuredPostImg,
-    travelHeroImg
+    travelHeroImg,
+    author
 }
