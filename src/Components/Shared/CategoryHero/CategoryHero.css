@@ -6,6 +6,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.35);
   z-index: 0;
+  transition: height 0.5s;
 }
 
 .overlay-black-hero img {
@@ -55,6 +56,7 @@
   align-items: start;
   max-width: 200px;
   gap: 12px;
+  transition: all 0.5s;
 }
 
 .feature img {
@@ -105,6 +107,22 @@
   }
   .product-icon-white {
     display: none;
+  }
+
+  .feature {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay-black-hero {
+    height: 400px;
+  }
+}
+
+@media (max-width: 400px) {
+  .overlay-black-hero {
+    height: 380px;
   }
 }
 
