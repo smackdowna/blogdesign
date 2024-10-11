@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import './CategoryHero.css'
+import './CategoryHero.css';
 import { ICONS } from "@/public/assets";
 import Image from "next/image";
+import { motion } from "framer-motion"; // Import motion
 
 interface Product {
     icon: string;
@@ -19,37 +20,41 @@ interface CategoryHeroProps {
     };
 }
 
-
 const CategoryHero: React.FC<CategoryHeroProps> = ({ title, Products }) => {
     return (
         <div className={`categoryHero section relative ${title}-bg w-full`}>
             <div className="overlay-black-hero"></div>
             <div className="category-content">
-                <div className="category-header">
+                <motion.div 
+                    className="category-header"
+                    initial={{ opacity: 0, y: -50 }} // Initial state for animation
+                    animate={{ opacity: 1, y: 0 }} // Animate to this state
+                    transition={{ duration: 0.5 }} // Duration of the animation
+                >
                     <h1 className="text-white">{title}</h1>
                     <span></span>
-                </div>
+                </motion.div>
                 <div className="features">
-                    <div className="feature">
-                        <Image src={ICONS[Products.Product1.icon as keyof typeof ICONS]} alt={Products.Product1.title} />
-                        <h4>{Products.Product1.title}</h4>
-                        <p>{Products.Product1.description}</p>
-                    </div>
-                    <div className="feature">
-                        <Image src={ICONS[Products.Product2.icon as keyof typeof ICONS]} alt={Products.Product2.title} />
-                        <h4>{Products.Product2.title}</h4>
-                        <p>{Products.Product2.description}</p>
-                    </div>
-                    <div className="feature">
-                        <Image src={ICONS[Products.Product3.icon as keyof typeof ICONS]} alt={Products.Product3.title} />
-                        <h4>{Products.Product3.title}</h4>
-                        <p>{Products.Product3.description}</p>
-                    </div>
+                    {Object.values(Products).map((product, index) => (
+                        <motion.div 
+                            key={index} // Add a unique key
+                            className="feature"
+                            initial={{ opacity: 0, y: 20 }} // Initial state for animation
+                            animate={{ opacity: 1, y: 0 }} // Animate to this state
+                            transition={{ duration: 0.5, delay: index * 0.2 }} // Delay each product's animation
+                        >
+                            <Image 
+                                src={ICONS[product.icon as keyof typeof ICONS]} 
+                                alt={product.title} 
+                            />
+                            <h4>{product.title}</h4>
+                            <p>{product.description}</p>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </div>
     );
 }
-
 
 export default CategoryHero;
