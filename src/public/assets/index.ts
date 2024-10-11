@@ -17,6 +17,9 @@ import travelIcon1 from "./Icons/travelIcon1.svg";
 import travelIcon2 from "./Icons/travelIcon2.svg";
 import travelIcon3 from "./Icons/travelIcon3.svg";
 import angleDown from "./Icons/angle-down.svg";
+import travelIcon1Black from "./Icons/travelIcon1-black.svg";
+import travelIcon2Black from "./Icons/travelIcon2-black.svg";
+import travelIcon3Black from "./Icons/travelIcon3-black.svg";
 
 // Importing images
 import heroImage from "./Images/hero-image.png";
@@ -42,7 +45,10 @@ export const ICONS = {
     travelIcon1,
     travelIcon2,
     travelIcon3,
-    angleDown
+    angleDown,
+    travelIcon1Black,
+    travelIcon2Black,
+    travelIcon3Black
  
 }
 

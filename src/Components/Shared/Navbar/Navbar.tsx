@@ -25,47 +25,45 @@ const Navbar = () => {
           <Image src={ICONS.logo} alt="blog-logo" className="size-10" />
           Blog
         </Link>
-
+  
         {/* Navlinks */}
         <div className="hidden xl:flex items-center gap-4">
           {navlinks.map(({ label, path }, index) => (
             <Link
               key={index}
               href={path}
-              className= {`${pathname === "/" ? "text-white" : "text-black"} font-medium leading-6`}
+              className={`${pathname === "/" ? "text-white" : "text-black"} font-medium leading-6`}
             >
               {label}
             </Link>
           ))}
         </div>
-
-          <div className="flex items-center gap-[21px]">
+  
+        <div className="flex items-center gap-[21px]">
+          <Image 
+            src={ICONS.searchIcon} 
+            alt="search-icon" 
+            className="size-6 cursor-pointer block md:hidden" 
+          />
+          <div className="relative hidden md:block">
             <Image 
-                src={ICONS.searchIcon} 
-                alt="search-icon" 
-                className="size-6 cursor-pointer block md:hidden" 
-              />
-              <div className="relative hidden md:block">
-                  <Image 
-                    src={pathname === "/" ? ICONS.searchIcon : ICONS.searchIconBlue} 
-                    alt="search-icon" 
-                    className="w-5 h-5 absolute left-4 top-1/2 transform -translate-y-1/2"
-                  />
-                  <input 
-                  type="text" 
-                  placeholder="Search" 
-                  className={`${pathname === "/" ? "text-white bg-primary-30 " : "text-black bg-primary-40"} pl-11 max-w-[185px] pr-4 py-2 rounded-lg shadow-custom focus:outline-none`}
-                  />
-              </div>
-            <button className={`${pathname === "/" ? "bg-primary-40 text-primary-10" : "bg-primary-10 text-white"} rounded-lg px-4 py-2 text-primary-10 font-semibold leading-[22px]}`} >
-            Subscirbe
-            </button>
-            <HamburgerMenu/>
+              src={pathname === "/" ? ICONS.searchIcon : ICONS.searchIconBlue} 
+              alt="search-icon" 
+              className="w-5 h-5 absolute left-4 top-1/2 transform -translate-y-1/2"
+            />
+            <input 
+              type="text" 
+              placeholder="Search" 
+              className={`${pathname === "/" ? "text-white bg-primary-30" : "text-black bg-primary-40"} pl-11 max-w-[185px] pr-4 py-2 rounded-lg shadow-custom focus:outline-none`}
+            />
           </div>
-
+          <button className={`${pathname === "/" ? "bg-primary-40 text-primary-10" : "bg-primary-10 text-white"} rounded-lg px-4 py-2 text-primary-10 font-semibold leading-[22px]`}>
+            Subscribe
+          </button>
+          <HamburgerMenu />
+        </div>
       </div>
     </div>
   );
-};
-
+};  
 export default Navbar;

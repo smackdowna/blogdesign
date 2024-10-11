@@ -2,11 +2,12 @@
 
 import './CategoryHero.css';
 import { ICONS } from "@/public/assets";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion"; // Import motion
 
 interface Product {
-    icon: string;
+    iconWhite: string;
+    iconBlack: string;
     title: string;
     description: string;
 }
@@ -18,12 +19,21 @@ interface CategoryHeroProps {
         Product2: Product;
         Product3: Product;
     };
+    heroImage: string | StaticImageData;
 }
 
-const CategoryHero: React.FC<CategoryHeroProps> = ({ title, Products }) => {
+const CategoryHero: React.FC<CategoryHeroProps> = ({ title, Products, heroImage }) => {
     return (
         <div className={`categoryHero section relative ${title}-bg w-full overflow-hidden`}>
-            <div className="overlay-black-hero"></div>
+            <div className="overlay-black-hero">
+                <Image 
+                    src={heroImage} 
+                    alt={title} 
+                    layout="fill" 
+                    objectFit="cover" 
+                    quality={100}
+                />
+            </div>
             <div className="category-content">
                 <motion.div 
                     className="category-header"
@@ -44,8 +54,14 @@ const CategoryHero: React.FC<CategoryHeroProps> = ({ title, Products }) => {
                             transition={{ duration: 0.5, delay: index * 0.2 }} // Delay each product's animation
                         >
                             <Image 
-                                src={ICONS[product.icon as keyof typeof ICONS]} 
+                                src={ICONS[product.iconWhite as keyof typeof ICONS]} 
                                 alt={product.title} 
+                                className='product-icon-white'
+                            />
+                            <Image 
+                                src={ICONS[product.iconBlack as keyof typeof ICONS]} 
+                                alt={product.title} 
+                                className='product-icon-black'
                             />
                             <h4>{product.title}</h4>
                             <p>{product.description}</p>

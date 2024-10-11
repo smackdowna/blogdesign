@@ -7,17 +7,20 @@ import { IMAGES } from "@/public/assets";
 export default function TravelPage() {
     const Products = {
         Product1 : {
-            icon: 'travelIcon1',
+            iconWhite: 'travelIcon1',
+            iconBlack: 'travelIcon1Black',
             title: 'Explore the world',
             description: 'Join me as I share my travel adventures, from hidden gems to popular destinations.'
         },
         Product2 : {
-            icon: 'travelIcon2',
+            iconWhite: 'travelIcon2',
+            iconBlack: 'travelIcon2Black',
             title: 'Backpack Suggestions',
             description: 'Discover simple and delightful recipes that bring warmth to your kitchen.'
         },
         Product3 : {
-            icon: 'travelIcon3',
+            iconWhite: 'travelIcon3',
+            iconBlack: 'travelIcon3Black',
             title: 'Everyday Inspiration',
             description: 'Find tips and tricks for a balanced lifestyle full of joy and creativity'
         }
@@ -174,7 +177,7 @@ export default function TravelPage() {
 
     return(
         <>
-            <CategoryHero title="Travel" Products={Products}  />
+            <CategoryHero title="Travel" Products={Products} heroImage={IMAGES.travelHeroImg}  />
             <ExploreBlogs tags={tags} blogs={blogs} />
             <NewsletterSubscribe/>
         </>
