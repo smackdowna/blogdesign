@@ -22,7 +22,7 @@ interface CategoryHeroProps {
 
 const CategoryHero: React.FC<CategoryHeroProps> = ({ title, Products }) => {
     return (
-        <div className={`categoryHero section relative ${title}-bg w-full`}>
+        <div className={`categoryHero section relative ${title}-bg w-full overflow-hidden`}>
             <div className="overlay-black-hero"></div>
             <div className="category-content">
                 <motion.div 

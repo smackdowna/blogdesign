@@ -32,7 +32,7 @@ const ExploreBlogs: React.FC<ExploreBlogsProps> = ({ tags, blogs }) => {
     const displayedBlogs = showMore ? filteredBlogs : filteredBlogs.slice(0, 3);
 
     return (
-        <div className="section ExploreBlogs">
+        <div className="section ExploreBlogs overflow-hidden">
             <div className="title">
                 <h4>Explore the blogs</h4>
                 <p className="font-medium">

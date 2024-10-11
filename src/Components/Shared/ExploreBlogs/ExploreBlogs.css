@@ -14,6 +14,7 @@
 
 .tab-container {
   width: fit-content;
+  max-width: 100%;
   margin: 0 auto;
   padding: 4px 0px;
   background-color: rgba(244, 244, 245, 1);
@@ -21,7 +22,12 @@
   padding: 2px;
   border-radius: 10px;
   margin-top: 36px;
+  overflow: scroll;
   margin-bottom: 24px;
+}
+
+.tab-container::-webkit-scrollbar {
+  display: none;
 }
 
 button.tab {
@@ -61,4 +67,12 @@ button.view-more-btn {
 
 button.view-more-btn:hover {
   opacity: 0.8;
+}
+
+/* Media Queries */
+@media (max-width: 720px) {
+  .title {
+    align-items: start;
+    text-align: start;
+  }
 }
