@@ -41,11 +41,11 @@ const Navbar = () => {
   
         <div className="flex items-center gap-[21px]">
           <Image 
-            src={ICONS.searchIcon} 
+            src={pathname === "/" ? ICONS.searchIcon : ICONS.searchIconBlue} 
             alt="search-icon" 
-            className="size-6 cursor-pointer block md:hidden" 
+            className="size-6 cursor-pointer block sm:hidden" 
           />
-          <div className="relative hidden md:block">
+          <div className="relative input-nav-flex">
             <Image 
               src={pathname === "/" ? ICONS.searchIcon : ICONS.searchIconBlue} 
               alt="search-icon" 

@@ -3,8 +3,11 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ICONS } from "@/public/assets";
+import { usePathname } from "next/navigation";
 
 const HamburgerMenu = () => {
+  const pathname = usePathname();
+
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
   const toggleHamburgerMenu = () => {
@@ -55,7 +58,7 @@ const HamburgerMenu = () => {
     <div className="relative hamburgerMenu block lg:hidden font-Inter">
       <Image
         onClick={toggleHamburgerMenu}
-        src={ICONS.menu}
+        src={pathname === "/" ?  ICONS.menu : ICONS.menuBlue}
         alt="menu-icon"
         className="size-6 cursor-pointer"
       />

@@ -5,3 +5,9 @@ input.text-black::placeholder {
 input.text-white::placeholder {
   color: #ffffff;
 }
+
+@media (max-width: 600px) {
+  .input-nav-flex {
+    display: none;
+  }
+}
