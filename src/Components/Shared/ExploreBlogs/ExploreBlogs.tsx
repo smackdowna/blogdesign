@@ -4,6 +4,7 @@ import './ExploreBlogs.css';
 import Card from "../Card/Card";
 import Image, { StaticImageData } from 'next/image';
 import { ICONS } from '@/public/assets';
+import  Link from 'next/link';
 import { motion } from 'framer-motion'; // Import framer-motion for animations
 
 interface Blog {
@@ -66,16 +67,17 @@ const ExploreBlogs: React.FC<ExploreBlogsProps> = ({ tags, blogs }) => {
                         transition={{ duration: 0.3 }} // Animation duration
                     >
                         {displayedBlogs.map((blog, index) => (
-                            <Card
-                                key={index}
-                                tags={blog.tags}
-                                title={blog.title}
-                                description={blog.description}
-                                author={blog.author}
-                                authorImage={blog.authorImage}
-                                date={blog.date}
-                                imageUrl={blog.imageUrl}
-                            />
+                            <Link key={index} href={`/blogs/${blog.title.replace(/\s+/g, '-').toLowerCase()}`}>
+                                <Card
+                                    tags={blog.tags}
+                                    title={blog.title}
+                                    description={blog.description}
+                                    author={blog.author}
+                                    authorImage={blog.authorImage}
+                                    date={blog.date}
+                                    imageUrl={blog.imageUrl}
+                                />
+                            </Link>
                         ))}
                     </motion.div>
                 ) : (
