@@ -2,7 +2,7 @@ import Container from '@/Components/Container/Container';
 import BlogCard from '@/Components/Shared/BlogCard/BlogCard';
 import Heading from '@/Components/Shared/Heading/Heading';
 import React from 'react';
-import { TCategorySection } from '../../page'; // Ensure that this path is correct
+import { TCategorySection } from '../../page';
 
 interface CategorizedPostsProps {
   section: TCategorySection;
