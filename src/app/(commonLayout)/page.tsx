@@ -1,10 +1,10 @@
 import { IMAGES } from "@/public/assets";
-import Hero from "./_components/Hero/Hero";
-import CategorizedPosts from "./_components/CategorizedPosts/CategorizedPosts";
+import Hero from "./components/Hero/Hero";
+import CategorizedPosts from "./components/CategorizedPosts/CategorizedPosts";
 
 import { StaticImageData } from 'next/image';
-import ExploreTopics from "./_components/ExploreTopics/ExploreTopics";
-import NewsletterSubscribe from "./_components/NewsletterSubscribe/NewsletterSubscribe";
+import ExploreTopics from "./components/ExploreTopics/ExploreTopics";
+import NewsletterSubscribe from "./components/NewsletterSubscribe/NewsletterSubscribe";
 
 export type TPost= {
   title: string;
