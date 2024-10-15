@@ -9,30 +9,23 @@ import AdvertisementCard from '@/Components/Shared/AdvertisementCard/Advertiseme
 
 export async function generateStaticParams() {
   return blogs.map((blog) => ({
-    slug: encodeURIComponent(blog.title.replace(/\s+/g, '-').toLowerCase())
-      .replace(/:/g, '%3A')
-      .replace(/\(/g, '%28')
-      .replace(/\)/g, '%29'),
+    slug: blog.title.replace(/\s+/g, '-').toLowerCase(),
   }));
 }
 
 const BlogDetailPage = ({ params }: { params: { slug: string } }) => {
-  console.log('Received slug:', params.slug); // Debug log
-
-  // Decode the URL-encoded slug
-  const decodedSlug = decodeURIComponent(params.slug);
-  console.log('Decoded slug:', decodedSlug); // Debug log
+  console.log('Received slug:', params.slug);
 
   // Convert slug back to title format (replace hyphens with spaces)
-  const cleanedSlug = decodedSlug.replace(/-/g, ' ');
-  console.log('Cleaned slug:', cleanedSlug); // Debug log
+  const cleanedSlug = params.slug.replace(/-/g, ' ');
+  console.log('Cleaned slug:', cleanedSlug);
 
   // Find the blog post by matching the title (case insensitive)
   const blog = blogs.find(
     (b: Blog) => b.title.toLowerCase() === cleanedSlug.toLowerCase()
   );
 
-  console.log('Found blog:', blog ? blog.title : 'Not found'); // Debug log
+  console.log('Found blog:', blog ? blog.title : 'Not found');
 
   if (!blog) {
     notFound();

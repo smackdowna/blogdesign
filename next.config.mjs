@@ -11,12 +11,11 @@ const nextConfig = {
             },
         ],
     },
-    async redirects() {
+    async rewrites() {
         return [
             {
-                source: '/b10gs/:slug',
-                destination: '/blogs/:slug',
-                permanent: true,
+                source: '/b10gs/:slug*',
+                destination: '/blogs/:slug*',
             },
         ];
     },
