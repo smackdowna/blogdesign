@@ -1,34 +1,28 @@
-// src/app/blogs/[slug]/page.tsx
-
 import { blogs } from '@/../Data/blog';
 import { notFound } from 'next/navigation';
 import { Blog } from '@/../types/blog';
 import Image from 'next/image';
 import NewsletterSubscribe from '../../components/NewsletterSubscribe/NewsletterSubscribe';
-import './slug.css' 
-import AdvertisementCard from '@/Components/Shared/AdvertisementCard/AdvertisementCard';
+import './slug.css'
+import AdvertisementCard from '../../../../Components//Shared/AdvertisementCard/AdvertisementCard'
 
 export async function generateStaticParams() {
   return blogs.map((blog) => ({
-    slug: encodeURIComponent(blog.title.replace(/\s+/g, '-').toLowerCase()),
+    id: blog.id.toString(),
   }));
 }
+const BlogDetailPage = ({ params }: { params: { id: string } }) => {
+  console.log('Received blog ID:', params.id);
 
-const BlogDetailPage = ({ params }: { params: { slug: string } }) => {
-  // Decode the URL-encoded slug
-  const decodedSlug = decodeURIComponent(params.slug);
-  
-  // Convert slug back to title format (replace hyphens with spaces)
-  const cleanedSlug = decodedSlug.replace(/-/g, ' ');
+  const blogId = parseInt(params.id, 10);
+  const blog = blogs.find((b: Blog) => b.id === blogId);
 
-  // Find the blog post by matching the title (case insensitive)
-  const blog = blogs.find(
-    (b: Blog) => b.title.toLowerCase() === cleanedSlug.toLowerCase()
-  );
+  console.log('Found blog:', blog ? blog.title : 'Not found');
 
   if (!blog) {
-    notFound(); // Trigger a 404 page if the blog is not found
+    notFound();
   }
+
 
   const advertisement = {
     description: "Get Travel bookings done in a jiffy at flat 30%OFF",
@@ -45,11 +39,9 @@ const BlogDetailPage = ({ params }: { params: { slug: string } }) => {
             <p className="text-sm text-gray-600">Date: {blog.date}</p>
         </div>
       </div>
-      <Image src={blog.imageUrl} alt={blog.title} width={100} height={30} className="mb-4 w-full h-[400px] object-cover" />
+      <Image src={blog.imageUrl} alt={blog.title} width={800} height={400} className="mb-4 w-full h-[400px] object-cover" />
       <div className="blog-content">
-        <div className="left">
-            <AdvertisementCard advertisement={advertisement} />
-        </div>
+            <AdvertisementCard description={advertisement.description} buttonText={advertisement.buttonText} />
         <p className="text-gray-700 mb-4 middle">{blog.description}</p>
         <div className="right"></div>
       </div>

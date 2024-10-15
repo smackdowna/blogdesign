@@ -30,6 +30,7 @@ export default function TravelPage() {
     const blogs = [
         // Adventures
         {
+            id: 1,
             title: 'Conquering the Alps: A Journey Through the Heart of Adventure',
             description: 'Explore the breathtaking landscapes of the Alps, filled with thrilling experiences and stunning views.',
             author: 'Emily Carter',
@@ -39,6 +40,7 @@ export default function TravelPage() {
             imageUrl: 'https://images.pexels.com/photos/914128/pexels-photo-914128.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
         },
         {
+            id: 2,
             title: 'Discovering the Amazon Rainforest: An Adventure Awaits',
             description: 'Dive into the wild beauty of the Amazon rainforest, home to exotic wildlife and lush landscapes.',
             author: 'Lucas Martinez',
@@ -48,6 +50,7 @@ export default function TravelPage() {
             imageUrl: IMAGES.featuredPostImg,
         },
         {
+            id: 3,
             title: 'Sailing the Mediterranean: A Journey Across Blue Waters',
             description: 'Experience the joys of sailing through the Mediterranean, discovering hidden coves and ancient ports.',
             author: 'Olivia Brown',
@@ -59,6 +62,7 @@ export default function TravelPage() {
         
         // Biking
         {
+            id: 4,
             title: 'Biking Across the Rockies: A Cyclist’s Dream',
             description: 'From rugged mountain trails to serene forest paths, discover the ultimate biking experience in the Rockies.',
             author: 'Michael Green',
@@ -68,6 +72,7 @@ export default function TravelPage() {
             imageUrl: IMAGES.featuredPostImg,
         },
         {
+            id: 5,
             title: 'The Best Cycling Trails in California: Ride Your Way to Paradise',
             description: 'Explore the most scenic cycling trails in California, from coastal routes to mountain paths.',
             author: 'Sophia Lee',
@@ -77,6 +82,7 @@ export default function TravelPage() {
             imageUrl: IMAGES.featuredPostImg,
         },
         {
+            id: 6,
             title: 'Exploring the Countryside: A Weekend Biking Getaway',
             description: 'Join us for a delightful biking getaway in the countryside, complete with picturesque views and charming towns.',
             author: 'Jack Wilson',
@@ -88,6 +94,7 @@ export default function TravelPage() {
         
         // Treks
         {
+            id: 7,
             title: 'The Ultimate Himalayan Trek: A Guide to Unforgettable Treks',
             description: 'Trekking through the Himalayas is not just a journey but a transformative experience for the soul.',
             author: 'Alicia Thompson',
@@ -97,6 +104,7 @@ export default function TravelPage() {
             imageUrl: IMAGES.featuredPostImg,
         },
         {
+            id: 8,
             title: 'Inca Trail Trek: A Journey to Machu Picchu',
             description: 'Experience the awe of hiking the Inca Trail, leading to the breathtaking ruins of Machu Picchu.',
             author: 'Carlos Ramirez',
@@ -106,6 +114,7 @@ export default function TravelPage() {
             imageUrl: IMAGES.featuredPostImg,
         },
         {
+            id: 9,
             title: 'The Pacific Crest Trail: A Hiker’s Dream',
             description: 'Embark on an epic adventure along the Pacific Crest Trail, where stunning vistas await at every turn.',
             author: 'Sarah Johnson',
@@ -117,6 +126,7 @@ export default function TravelPage() {
         
         // Thrills
         {
+            id: 10,
             title: 'Skydiving Over the Grand Canyon: A Thrill-Seeker’s Paradise',
             description: 'Feel the rush of skydiving over the Grand Canyon, one of the most breathtaking landscapes on Earth.',
             author: 'Liam Smith',
@@ -126,6 +136,7 @@ export default function TravelPage() {
             imageUrl: IMAGES.featuredPostImg,
         },
         {
+            id: 11,
             title: 'Bungee Jumping in New Zealand: The Ultimate Adrenaline Rush',
             description: 'Experience the thrill of bungee jumping in New Zealand, a must for any adrenaline junkie.',
             author: 'Emma Thompson',
@@ -135,6 +146,7 @@ export default function TravelPage() {
             imageUrl: IMAGES.featuredPostImg,
         },
         {
+            id: 12,
             title: 'Whitewater Rafting in Colorado: A Heart-Pounding Adventure',
             description: 'Join us for an exhilarating whitewater rafting adventure down Colorado’s most thrilling rivers.',
             author: 'Noah Johnson',
@@ -146,6 +158,7 @@ export default function TravelPage() {
     
         // Hiking
         {
+            id: 13,
             title: 'The Best Hiking Trails in National Parks',
             description: 'Discover the best hiking trails in America’s national parks and enjoy nature at its finest.',
             author: 'Mia Davis',
@@ -155,6 +168,7 @@ export default function TravelPage() {
             imageUrl: IMAGES.featuredPostImg,
         },
         {
+            id: 14,
             title: 'Exploring the Appalachian Trail: A Hiker’s Journey',
             description: 'Join me on a journey along the Appalachian Trail, a beautiful and diverse hiking experience.',
             author: 'Isabella Martinez',
@@ -164,6 +178,7 @@ export default function TravelPage() {
             imageUrl: IMAGES.featuredPostImg,
         },
         {
+            id: 15,
             title: 'Top 10 Scenic Hiking Routes in Europe',
             description: 'Explore the top scenic hiking routes in Europe, where breathtaking views and rich history await.',
             author: 'Oliver Taylor',

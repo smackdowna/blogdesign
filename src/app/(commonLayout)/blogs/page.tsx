@@ -8,7 +8,7 @@ const BlogsPage = () => {
       <ul>
         {blogs.map((blog, index) => (
           <li key={index} className="mb-2">
-            <Link href={`/blogs/${encodeURIComponent(blog.title.replace(/\s+/g, '-').toLowerCase())}`}>
+            <Link href={`/blogs/${blog.id}`}>
               {blog.title}
             </Link>
           </li>

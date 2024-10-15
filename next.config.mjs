@@ -1,3 +1,5 @@
+// next.config.mjs
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
@@ -10,15 +12,8 @@ const nextConfig = {
             },
         ],
     },
-    async redirects() {
-        return [
-            {
-                source: '/b10gs/:slug',
-                destination: '/blogs/:slug',
-                permanent: true,
-            },
-        ];
-    },
+    // Remove the experimental logging option
+    // Add any other necessary configuration options here
 };
 
 export default nextConfig;
