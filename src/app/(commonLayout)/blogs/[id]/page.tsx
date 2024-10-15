@@ -39,10 +39,10 @@ const BlogDetailPage = ({ params }: { params: { id: string } }) => {
             <p className="text-sm text-gray-600">Date: {blog.date}</p>
         </div>
       </div>
-      <Image src={blog.imageUrl} alt={blog.title} width={100} height={30} className="mb-4 w-full h-[400px] object-cover" />
+      <Image src={blog.imageUrl} alt={blog.title} width={800} height={400} className="mb-4 w-full h-[400px] object-cover" />
       <div className="blog-content">
         <div className="left">
-            <AdvertisementCard advertisement={advertisement} />
+            <AdvertisementCard description={advertisement.description} buttonText={advertisement.buttonText} />
         </div>
         <p className="text-gray-700 mb-4 middle">{blog.description}</p>
         <div className="right"></div>
