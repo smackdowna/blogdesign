@@ -1,4 +1,3 @@
-// src/app/blogs/[slug]/page.tsx
 import { blogs } from '@/../Data/blog';
 import { notFound } from 'next/navigation';
 import { Blog } from '@/../types/blog';
@@ -9,21 +8,14 @@ import AdvertisementCard from '@/Components/Shared/AdvertisementCard/Advertiseme
 
 export async function generateStaticParams() {
   return blogs.map((blog) => ({
-    slug: blog.title.replace(/\s+/g, '-').toLowerCase(),
+    id: blog.id.toString(),
   }));
 }
+const BlogDetailPage = ({ params }: { params: { id: string } }) => {
+  console.log('Received blog ID:', params.id);
 
-const BlogDetailPage = ({ params }: { params: { slug: string } }) => {
-  console.log('Received slug:', params.slug);
-
-  // Convert slug back to title format (replace hyphens with spaces)
-  const cleanedSlug = params.slug.replace(/-/g, ' ');
-  console.log('Cleaned slug:', cleanedSlug);
-
-  // Find the blog post by matching the title (case insensitive)
-  const blog = blogs.find(
-    (b: Blog) => b.title.toLowerCase() === cleanedSlug.toLowerCase()
-  );
+  const blogId = parseInt(params.id, 10);
+  const blog = blogs.find((b: Blog) => b.id === blogId);
 
   console.log('Found blog:', blog ? blog.title : 'Not found');
 
