@@ -9,20 +9,35 @@ import AdvertisementCard from '@/Components/Shared/AdvertisementCard/Advertiseme
 
 export async function generateStaticParams() {
   return blogs.map((blog) => ({
-    slug: encodeURIComponent(blog.title.replace(/\s+/g, '-').toLowerCase()),
+    slug: encodeURIComponent(blog.title.replace(/\s+/g, '-').toLowerCase())
+      .replace(/:/g, '%3A')
+      .replace(/\(/g, '%28')
+      .replace(/\)/g, '%29'),
   }));
 }
 
 const BlogDetailPage = ({ params }: { params: { slug: string } }) => {
+  console.log('Received slug:', params.slug); // Debug log
+
+  // Decode the URL-encoded slug
   const decodedSlug = decodeURIComponent(params.slug);
+  console.log('Decoded slug:', decodedSlug); // Debug log
+
+  // Convert slug back to title format (replace hyphens with spaces)
   const cleanedSlug = decodedSlug.replace(/-/g, ' ');
+  console.log('Cleaned slug:', cleanedSlug); // Debug log
+
+  // Find the blog post by matching the title (case insensitive)
   const blog = blogs.find(
     (b: Blog) => b.title.toLowerCase() === cleanedSlug.toLowerCase()
   );
 
+  console.log('Found blog:', blog ? blog.title : 'Not found'); // Debug log
+
   if (!blog) {
-    notFound(); // Trigger a 404 page if the blog is not found
+    notFound();
   }
+
 
   const advertisement = {
     description: "Get Travel bookings done in a jiffy at flat 30%OFF",
