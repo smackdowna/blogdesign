@@ -1,11 +1,10 @@
 // src/app/blogs/[slug]/page.tsx
-
 import { blogs } from '@/../Data/blog';
 import { notFound } from 'next/navigation';
 import { Blog } from '@/../types/blog';
 import Image from 'next/image';
 import NewsletterSubscribe from '../../components/NewsletterSubscribe/NewsletterSubscribe';
-import './slug.css' 
+import './slug.css'
 import AdvertisementCard from '@/Components/Shared/AdvertisementCard/AdvertisementCard';
 
 export async function generateStaticParams() {
@@ -15,13 +14,8 @@ export async function generateStaticParams() {
 }
 
 const BlogDetailPage = ({ params }: { params: { slug: string } }) => {
-  // Decode the URL-encoded slug
   const decodedSlug = decodeURIComponent(params.slug);
-  
-  // Convert slug back to title format (replace hyphens with spaces)
   const cleanedSlug = decodedSlug.replace(/-/g, ' ');
-
-  // Find the blog post by matching the title (case insensitive)
   const blog = blogs.find(
     (b: Blog) => b.title.toLowerCase() === cleanedSlug.toLowerCase()
   );
