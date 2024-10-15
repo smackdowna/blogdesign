@@ -4,7 +4,7 @@ import { Blog } from '@/../types/blog';
 import Image from 'next/image';
 import NewsletterSubscribe from '../../components/NewsletterSubscribe/NewsletterSubscribe';
 import './slug.css'
-import AdvertisementCard from '@/Components/Shared/AdvertisementCard/AdvertisementCard';
+import AdvertisementCard from '../../../../Components//Shared/AdvertisementCard/AdvertisementCard'
 
 export async function generateStaticParams() {
   return blogs.map((blog) => ({
