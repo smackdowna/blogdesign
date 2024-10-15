@@ -8,7 +8,6 @@
   justify-content: space-between;
 }
 
-.blog-content .left,
 .blog-content .right {
   flex-basis: 20%;
 }
