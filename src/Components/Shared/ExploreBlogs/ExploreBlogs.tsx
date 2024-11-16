@@ -3,9 +3,9 @@
 
 import { useState, useEffect } from "react";
 import "./ExploreBlogs.css";
-import Card from "../Card/Card";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Card from "../Card/Card";
 
 interface SubCategory {
   _id: string;
