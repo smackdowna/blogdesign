@@ -4,8 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { navlinks } from "./navbar.constants";
-import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
 import './nav.css';
+import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
 
 const Navbar = () => {
   const pathname = usePathname();
