@@ -1,17 +1,30 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+import { formatDate } from "@/utils/convertDate";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 // Define the types for the props
 interface BlogCardProps {
+  id:string;
   title: string;
-  description: string;
-  author: string;
-  date: string;
-  imageUrl: string | StaticImageData;
+  content: string;
+  category?: string;
+  author:{
+    _id:string,
+    full_name:string,
+  };
+  createdAt: string;
+  thumbnail: {
+    fileId: string;
+    name: string;
+    url: string;
+    thumbnailUrl: string;
+    _id: string;
+  };
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ title, description, author, date, imageUrl }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ id, title, content, author, createdAt, thumbnail }) => {
   const [screenWidth, setScreenWidth] = useState<number>(0);
 
   // Detect screen size
@@ -21,7 +34,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, author, date, i
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initialize screen size check on component mount
+    handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -43,21 +56,30 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, author, date, i
     : title;
 
   const truncatedDescription = isLargeScreen
-    ? description.length > 50
-      ? `${description.slice(0, 50)}...`
-      : description
+    ? content.length > 50
+      ? `${content.slice(0, 50)}...`
+      : content
     : isMediumScreen
-    ? description.length > 100
-      ? `${description.slice(0, 100)}...`
-      : description
-    : description.length > 30
-    ? `${description.slice(0, 30)}...`
-    : description;
+    ? content.length > 100
+      ? `${content.slice(0, 100)}...`
+      : content
+    : content.length > 30
+    ? `${content.slice(0, 30)}...`
+    : content;
 
 
   return (
-    <div className="py-2 gap-2 flex items-center md:gap-4 border-b border-neutral-60 w-full lg:max-w-[513px] font-Inter">
-      <Image src={imageUrl} alt="blog image" className="w-[93px] h-full object-cover object-center md:size-[146px] rounded-lg" />
+    <Link href={`blogs/${id}`} className="py-2 gap-2 flex items-center md:gap-4 border-b border-neutral-60 w-full lg:max-w-[513px] font-Inter">
+      <div className="relative w-[93px] h-[93px] md:w-[146px] md:h-[146px] rounded-lg overflow-hidden">
+  <Image
+    src={thumbnail?.thumbnailUrl}
+    alt={thumbnail?.name}
+    fill
+    quality={100}
+    sizes="(max-width: 768px) 93px, (max-width: 1024px) 146px, 100vw"
+    className="object-cover object-center rounded-lg w-full h-full"
+  />
+</div>
 
       <div>
         <h1 className="text-black text-sm md:text-base font-semibold leading-normal md:leading-6 lg:leading-[20.8px]">
@@ -69,14 +91,14 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, description, author, date, i
 
         <div className="flex items-center justify-between mt-4">
           <p className="text-neutral-20 text-xs md:text-sm leading-normal md:leading-6 xl:leading-[20.8px]">
-            {author}
+            {author?.full_name}
           </p>
           <p className="text-neutral-20 text-xs md:text-sm leading-normal md:leading-6 xl:leading-[20.8px]">
-            {date}
+          {formatDate(createdAt)}
           </p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

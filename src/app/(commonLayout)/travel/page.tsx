@@ -3,7 +3,6 @@ import CategoryHero from "@/Components/Shared/CategoryHero/CategoryHero";
 import ExploreBlogs from "@/Components/Shared/ExploreBlogs/ExploreBlogs";
 import { IMAGES } from "@/public/assets";
 
-
 export default function TravelPage() {
     const Products = {
         Product1 : {
@@ -189,7 +188,6 @@ export default function TravelPage() {
         },
     ];
     
-
     return(
         <>
             <CategoryHero title="Travel" Products={Products} heroImage={IMAGES.travelHeroImg}  />

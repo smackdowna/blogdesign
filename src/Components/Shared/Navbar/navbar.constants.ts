@@ -1,22 +1,22 @@
 export const navlinks = [
     {
         label : "Travel",
-        path: "/travel"
+        path: "/category/Travel"
     },
     {
         label : "Gossips",
-        path: "/gossips"
+        path: "/category/Gossips"
     },
     {
         label : "Entertainment",
-        path: "/entertainment"
+        path: "/category/Entertainment"
     },
     {
         label : "Technology",
-        path: "/technology"
+        path: "/category/Technology"
     },
     {
         label : "Reviews",
-        path: "/reviews"
+        path: "/category/Reviews"
     },
 ]

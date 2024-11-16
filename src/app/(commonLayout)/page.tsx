@@ -1,17 +1,28 @@
-import { IMAGES } from "@/public/assets";
 import Hero from "./components/Hero/Hero";
 import CategorizedPosts from "./components/CategorizedPosts/CategorizedPosts";
-
-import { StaticImageData } from 'next/image';
 import ExploreTopics from "./components/ExploreTopics/ExploreTopics";
-import NewsletterSubscribe from "./components/NewsletterSubscribe/NewsletterSubscribe";
+// import NewsletterSubscribe from "./components/NewsletterSubscribe/NewsletterSubscribe";
 
 export type TPost= {
+  _id:string;
   title: string;
-  description: string;
-  author: string;
-  date: string;
-  imageUrl: string | StaticImageData;
+  content: string;
+  category:{
+    _id:string;
+    name:string;
+  };
+  author:{
+    _id:string,
+    full_name:string,
+  };
+  createdAt: string;
+  thumbnail: {
+    fileId: string;
+    name: string;
+    url: string;
+    thumbnailUrl: string;
+    _id: string;
+  };
 }
 
 export type TCategorySection= {
@@ -22,141 +33,60 @@ export type TCategorySection= {
   data: TPost[];
 }
 
-export default function page() {
+export default async function page() {
+  const response = await fetch("https://blogbackend-theta.vercel.app/api/v1/blog");
+  const dynamicPosts = await response.json();
+
+  // console.log(dynamicPosts);
+  // console.log(Array.isArray(dynamicPosts.data));
 
   const homePageCategorizedPosts : TCategorySection[] = [
     {
       sectionHeading : "Top Featured Posts",
       isBordervisible:false,
       isLinkAvailable:false,
-      data : [
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-    ]
+      data : dynamicPosts?.data?.slice(0,2)
     },
     {
       sectionHeading : "Travel",
       isBordervisible:true,
       isLinkAvailable:true,
-      path : "/",
-      data : [
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-    ]
+      path : "/category/Travel",
+      data : dynamicPosts?.data?.filter((data:TPost) => data?.category.name === "Travel")
     },
     {
       sectionHeading : "Gossips",
       isBordervisible:true,
       isLinkAvailable:true,
-      path : "/",
-      data : [
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-    ]
+      path : "/category/Gossips",
+      data : dynamicPosts?.data?.filter((data:TPost) => data?.category.name === "Gossips")
     },
     {
       sectionHeading : "Entertainment",
       isBordervisible:true,
       isLinkAvailable:true,
-      path : "/",
-      data : [
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-    ]
+      path : "/category/Entertainment",
+      data : dynamicPosts?.data?.filter((data:TPost) => data?.category.name === "Entertainment")
     },
     {
       sectionHeading : "Technology",
       isBordervisible:true,
       isLinkAvailable:true,
-      path : "/",
-      data : [
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-    ]
+      path : "/category/Technology",
+      data : dynamicPosts?.data?.filter((data:TPost) => data?.category?.name === "Technology")
     },
     {
       sectionHeading : "Reviews",
       isBordervisible:true,
       isLinkAvailable:true,
-      path : "/",
-      data : [
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-        {
-            title:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            description:"Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra. Wanderlust: Discovering Hidden Gems, exploring the geeks of tra",
-            author: "Thilagar Gobinath",
-            date:"October 15, 2023",
-            imageUrl:IMAGES.featuredPostImg
-        },
-    ]
+      path : "/category/Reviews",
+      data : dynamicPosts?.data?.filter((data:TPost) => data?.category.name === "Reviews")
     },
-  ]
+  ];
+
+
+
+
   return (
     <div className="flex flex-col">
       <Hero/>
@@ -168,7 +98,7 @@ export default function page() {
       }
       <ExploreTopics/>
       </div>
-      <NewsletterSubscribe/>
+      {/* <NewsletterSubscribe/> */}
     </div>
   );
 }
