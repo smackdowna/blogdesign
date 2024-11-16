@@ -1,6 +1,6 @@
-import Hero from "./components/Hero/Hero";
-import CategorizedPosts from "./components/CategorizedPosts/CategorizedPosts";
-import ExploreTopics from "./components/ExploreTopics/ExploreTopics";
+import Hero from "../../Components/Hero/Hero";
+import CategorizedPosts from "../../Components/CategorizedPosts/CategorizedPosts";
+import ExploreTopics from "../../Components/ExploreTopics/ExploreTopics";
 // import NewsletterSubscribe from "./components/NewsletterSubscribe/NewsletterSubscribe";
 
 export type TPost= {
