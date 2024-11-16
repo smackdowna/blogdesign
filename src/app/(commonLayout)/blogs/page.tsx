@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { blogs } from '../../../../Data/blog'; // Adjust the import path as needed
+import { blogs } from '../../../../Data/blog';
 
 const BlogsPage = () => {
   return (

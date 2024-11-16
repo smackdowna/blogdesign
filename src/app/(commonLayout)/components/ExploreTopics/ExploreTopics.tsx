@@ -1,27 +1,47 @@
 "use client";
 import Container from "@/Components/Container/Container";
-import { ICONS, IMAGES } from "@/public/assets";
+import { ICONS } from "@/public/assets";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 import { NavigationOptions } from "swiper/types";
+import Link from "next/link";
+
+type TSubCategory = {
+  _id: string;
+  name: string;
+};
+
+type TCategory={
+  _id:string;
+  name:string;
+  description:string[];
+  subCategories:TSubCategory[]
+  thumbnail:{
+    fileId:string;
+    name:string;
+    url:string;
+    thumbnailUrl:string;
+    _id:string;
+  }
+}
 
 const ExploreTopics = () => {
-  const topics = [
-    { title: "Instagram Marketing", imgSrc: IMAGES.featuredPostImg },
-    { title: "Facebook Ads Mastery", imgSrc: IMAGES.featuredPostImg },
-    { title: "SEO Optimization", imgSrc: IMAGES.featuredPostImg },
-    { title: "Content Strategy", imgSrc: IMAGES.featuredPostImg },
-    { title: "Instagram Marketing", imgSrc: IMAGES.featuredPostImg },
-    { title: "Facebook Ads Mastery", imgSrc: IMAGES.featuredPostImg },
-    { title: "SEO Optimization", imgSrc: IMAGES.featuredPostImg },
-    { title: "Content Strategy", imgSrc: IMAGES.featuredPostImg },
-  ];
+  const [categories, setCategories]=useState([])
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const response = await fetch('https://blogbackend-theta.vercel.app/api/v1/category');
+      const data = await response.json();
+      setCategories(data)
+    }
+    fetchCategories()
 
+  }, []);
+  console.log(categories)
   const prevButtonRef = useRef<HTMLDivElement>(null);
   const nextButtonRef = useRef<HTMLDivElement>(null);
 
@@ -145,19 +165,21 @@ const ExploreTopics = () => {
             }}
           className="mt-[18px] pb-10"
         >
-          {topics.map((topic, index) => (
+          {categories?.map((category:TCategory, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-primary-70 rounded-lg w-[222px] h-[262px] mb-12">
-                <Image
-                  src={topic.imgSrc}
-                  alt="feature-topic"
-                  className="rounded-t-lg w-full"
-                />
-                <div className="text-primary-10 font-medium leading-6 flex items-center justify-center py-2 gap-2">
-                  {topic.title}
-                  <Image src={ICONS.view} alt="view-icon" className="size-6" />
-                </div>
-              </div>
+              <div className="bg-primary-70 rounded-lg w-[222px] h-[262px] mb-12 relative">
+  <Image
+    fill
+    src={category.thumbnail.thumbnailUrl}
+    alt="feature-category"
+    className="rounded-t-lg object-cover"
+  />
+  <Link href={`/category/${category.name}`} className="text-primary-10 font-medium leading-6 flex items-center justify-center py-2 gap-2 absolute bottom-0 w-full bg-primary-70 rounded-b-lg">
+    {category.name}
+    <Image src={ICONS.view} alt="view-icon" className="w-6 h-6" />
+  </Link>
+</div>
+
             </SwiperSlide>
           ))}
         </Swiper>

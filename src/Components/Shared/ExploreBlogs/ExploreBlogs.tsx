@@ -1,109 +1,103 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { useState } from 'react';
-import './ExploreBlogs.css';
-import Card from "../Card/Card";
-import Image, { StaticImageData } from 'next/image';
-import { ICONS } from '@/public/assets';
-import  Link from 'next/link';
-import { motion } from 'framer-motion'; // Import framer-motion for animations
 
-interface Blog {
-    id: number;
-    title: string;
-    description: string;
-    author: string;
-    authorImage: string | StaticImageData;
-    date: string;
-    tags: string[];
-    imageUrl: string | StaticImageData;
+import { useState, useEffect } from "react";
+import "./ExploreBlogs.css";
+import Card from "../Card/Card";
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+interface SubCategory {
+  _id: string;
+  name: string;
 }
 
 interface ExploreBlogsProps {
-    tags: string[];
-    blogs: Blog[];
+  subCategory: SubCategory[];
 }
 
-const ExploreBlogs: React.FC<ExploreBlogsProps> = ({ tags, blogs }) => {
-    const [activeTab, setActiveTab] = useState(tags[0] || 'Adventures'); // Use first tag as default
-    const [showMore, setShowMore] = useState(false); // State to toggle show more/less
+const ExploreBlogs: React.FC<ExploreBlogsProps> = ({ subCategory }) => {
+  const [allBlogs, setAllBlogs] = useState<any[]>([]);
+  const [activeTab, setActiveTab] = useState<string>(subCategory?.[0]?.name || "");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    // Filter blogs by active tab
-    const filteredBlogs = blogs.filter(blog => blog.tags.includes(activeTab));
+  useEffect(() => {
+    const fetchAllBlogs = async () => {
+      try {
+        setIsLoading(true); // Start loading
+        const response = await fetch("https://blogbackend-theta.vercel.app/api/v1/blog");
+        const data = await response.json();
+        setAllBlogs(data?.data || []);
+      } catch (error) {
+        console.error("Failed to fetch blogs:", error);
+      } finally {
+        setIsLoading(false); // Stop loading
+      }
+    };
 
-    // Limit to maximum of 3 blogs
-    const displayedBlogs = showMore ? filteredBlogs : filteredBlogs.slice(0, 3);
+    fetchAllBlogs();
+  }, []);
 
-    return (
-        <div className="section ExploreBlogs overflow-hidden">
-            <div className="title">
-                <h4>Explore the blogs</h4>
-                <p className="font-medium">
-                    Join me on a delightful journey filled with travel tales, tasty recipes, and lifestyle tips that inspire warmth and connection.
-                </p>
-            </div>
+  // Filter blogs based on the active tab (subcategory name)
+  const filteredBlogs = allBlogs?.filter((blog) => blog.subCategory === activeTab);
 
-            {/* Tabs */}
-            <div className="flex tab-container gap-1">
-                {tags.map((tab) => (
-                    <button
-                        key={tab}
-                        className={`py-2 px-4 tab ${activeTab === tab ? 'active' : ''}`}
-                        onClick={() => {
-                            setActiveTab(tab);
-                            setShowMore(false); // Reset to show the first 3 when switching tabs
-                        }}
-                    >
-                        <h5>{tab}</h5>
-                    </button>
-                ))}
-            </div>
+  return (
+    <div className="section ExploreBlogs overflow-hidden">
+      <div className="title">
+        <h4>Explore the blogs</h4>
+        <p className="font-medium">
+          Join me on a delightful journey filled with travel tales, tasty recipes, and lifestyle tips that inspire warmth and connection.
+        </p>
+      </div>
 
-            {/* Render filtered blogs */}
-            <div className="mt-4 blog-container">
-                {displayedBlogs.length > 0 ? (
-                    <motion.div 
-                        className="blog-cards"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }} // Animation duration
-                    >
-                        {displayedBlogs.map((blog, index) => (
-                            <Link key={index} href={`/blogs/${blog.id}`}>
-                                <Card
-                                    tags={blog.tags}
-                                    title={blog.title}
-                                    description={blog.description}
-                                    author={blog.author}
-                                    authorImage={blog.authorImage}
-                                    date={blog.date}
-                                    imageUrl={blog.imageUrl}
-                                />
-                            </Link>
-                        ))}
-                    </motion.div>
-                ) : (
-                    <div>No blogs found for this category</div>
-                )}
-            </div>
+      {/* Tabs */}
+      <div className="flex tab-container gap-1">
+        {subCategory?.map((tab) => (
+          <button
+            key={tab._id}
+            className={`py-2 px-4 tab ${activeTab === tab.name ? "active" : ""}`}
+            onClick={() => setActiveTab(tab.name)}
+          >
+            <h5>{tab.name}</h5>
+          </button>
+        ))}
+      </div>
 
-            {/* View More / View Less Toggle */}
-            {filteredBlogs.length > 3 && (
-                <div className="mt-4 text-center">
-                    <button 
-                        onClick={() => setShowMore(!showMore)} 
-                        className="view-more-btn flex items-center gap-1 mx-auto"
-                    >
-                        {showMore ? 'View Less' : 'View More'}
-                        <Image 
-                            src={ICONS.angleDown} 
-                            alt="icon" 
-                            className={`transition-transform duration-300 ${showMore ? 'rotate-180' : ''}`} // Rotate animation
-                        />
-                    </button>
-                </div>
-            )}
-        </div>
-    );
-}
+      {/* Loader or Render Filtered Blogs */}
+      <div className="mt-4 blog-container">
+        {isLoading ? (
+          // Loader animation
+          <div className="size-10 flex gap-2 items-center justify-center mx-auto">
+            <div className="w-2 h-5 animate-[ping_1.4s_linear_infinite] bg-sky-600"></div>
+            <div className="w-2 h-5 animate-[ping_1.8s_linear_infinite] bg-sky-600"></div>
+            <div className="w-2 h-5 animate-[ping_2s_linear_infinite] bg-sky-600"></div>
+          </div>
+        ) : filteredBlogs?.length > 0 ? (
+          <motion.div
+            className="blog-cards"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {filteredBlogs?.map((blog, index) => (
+              <Link key={index} href={`/blogs/${blog._id}`}>
+                <Card
+                  tags={blog.tags}
+                  title={blog.title}
+                  description={blog.content}
+                  author={blog.author}
+                  date={blog.createdAt}
+                  imageUrl={blog.thumbnail?.thumbnailUrl}
+                />
+              </Link>
+            ))}
+          </motion.div>
+        ) : (
+          <div>No blogs found for this category</div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default ExploreBlogs;

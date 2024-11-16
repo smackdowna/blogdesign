@@ -1,8 +1,8 @@
-import Container from '@/Components/Container/Container';
-import BlogCard from '@/Components/Shared/BlogCard/BlogCard';
-import Heading from '@/Components/Shared/Heading/Heading';
-import React from 'react';
-import { TCategorySection } from '../../page';
+import Container from "@/Components/Container/Container";
+import Heading from "@/Components/Shared/Heading/Heading";
+import React from "react";
+import { TCategorySection } from "../../page";
+import BlogCard from "@/Components/Shared/BlogCard/BlogCard";
 
 interface CategorizedPostsProps {
   section: TCategorySection;
@@ -10,25 +10,34 @@ interface CategorizedPostsProps {
 
 const CategorizedPosts: React.FC<CategorizedPostsProps> = ({ section }) => {
   return (
-        <Container>
+    <Container>
       <div className="flex flex-col gap-[15px]">
         <Heading
           title={section.sectionHeading}
           isBordervisible={section.isBordervisible}
           isLinkAvailable={section.isLinkAvailable}
-          path = {section.path}
+          path={section.path}
         />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-10">
-          {section.data.map((content, index) => (
-            <BlogCard
-              key={index}
-              title={content.title}
-              description={content.description}
-              author={content.author}
-              date={content.date}
-              imageUrl={content.imageUrl}
-            />
-          ))}
+        {section?.data?.length > 0 ? (
+  section?.data?.map((content, index) => {
+    // console.log("Content:", content.title);
+    return (
+      <BlogCard
+        key={index}
+        id={content._id}
+        title={content.title}
+        content={content.content}
+        author={content.author}
+        createdAt={content.createdAt}
+        thumbnail={content.thumbnail}
+      />
+    );
+  })
+) : (
+  <p>No posts available for this category.</p>
+)}
+
         </div>
       </div>
     </Container>
