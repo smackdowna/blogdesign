@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ICONS } from "@/public/assets";
 import { usePathname } from "next/navigation";
+import { navlinks } from "../navbar.constants";
 
 const HamburgerMenu = () => {
   const pathname = usePathname();
@@ -30,29 +31,6 @@ const HamburgerMenu = () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, [isHamburgerOpen]);
-
-  const menuLinks = [
-    {
-      label: "Blog Home",
-      path: "/",
-    },
-    {
-      label: "Categories",
-      path: "/",
-    },
-    {
-      label: "Case Studies",
-      path: "/",
-    },
-    {
-      label: "Archive",
-      path: "/",
-    },
-    {
-      label: "More",
-      path: "/",
-    },
-  ];
 
   return (
     <div className="relative hamburgerMenu block lg:hidden font-Inter">
@@ -91,8 +69,9 @@ const HamburgerMenu = () => {
           <hr className="border border-primary-90" />
 
           <div className="flex flex-col gap-1 mt-1">
-            {menuLinks.map((link, index) => (
+            {navlinks.map((link, index) => (
               <Link
+              onClick={()=> setIsHamburgerOpen(false)}
                 key={index}
                 href={`${link.path}`}
                 className="text-sm text-neutral-100 font-medium leading-normal p-2"

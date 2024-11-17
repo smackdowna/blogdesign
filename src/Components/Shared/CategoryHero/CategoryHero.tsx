@@ -34,29 +34,18 @@ const CategoryHero: React.FC<CategoryHeroProps> = ({ title, description, heroIma
                     <h1 className="text-white">{title}</h1>
                     <span></span>
                 </motion.div>
-                <div className="features">
+                <div className="features flex items-center">
                     {
                     description?.map((description, index) => (
-                        <motion.div 
+                            
+                            <motion.p 
                             key={index} // Add a unique key
-                            className="feature"
+                            className=""
                             initial={{ opacity: 0, y: 20 }} // Initial state for animation
                             animate={{ opacity: 1, y: 0 }} // Animate to this state
                             transition={{ duration: 0.5, delay: index * 0.2 }} // Delay each description's animation
-                        >
-                            {/* <Image 
-                                src={ICONS[description.iconWhite as keyof typeof ICONS]} 
-                                alt={description.title} 
-                                className='description-icon-white'
-                            />
-                            <Image 
-                                src={ICONS[description.iconBlack as keyof typeof ICONS]} 
-                                alt={description.title} 
-                                className='description-icon-black'
-                            /> */}
-                            {/* <h4>{description.title}</h4> */}
-                            <p>{description}</p>
-                        </motion.div>
+                            
+                            >{description}</motion.p>
                     ))}
                 </div>
             </div>

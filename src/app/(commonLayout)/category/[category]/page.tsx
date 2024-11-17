@@ -15,7 +15,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
     <>
       <CategoryHero
         title={`${params.category}`}
-        description={dynamicCategoryData?.description}
+        description={dynamicCategoryData?.category?.description}
         heroImage={dynamicCategoryData?.category?.thumbnail?.thumbnailUrl}
 
       />

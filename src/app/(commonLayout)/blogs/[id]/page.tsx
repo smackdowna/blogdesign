@@ -1,7 +1,7 @@
 import Image from 'next/image';
 // import NewsletterSubscribe from '../../components/NewsletterSubscribe/NewsletterSubscribe';
 import './slug.css';
-import AdvertisementCard from '../../../../Components//Shared/AdvertisementCard/AdvertisementCard';
+// import AdvertisementCard from '../../../../Components//Shared/AdvertisementCard/AdvertisementCard';
 import { formatDate } from '@/utils/convertDate';
 
 const BlogDetailPage = async ({ params }: { params: { id: string } }) => {
@@ -21,10 +21,10 @@ const BlogDetailPage = async ({ params }: { params: { id: string } }) => {
     );
   }
 
-  const advertisement = {
-    description: 'Get Travel bookings done in a jiffy at flat 30% OFF',
-    buttonText: 'Book Now',
-  };
+  // const advertisement = {
+  //   description: 'Get Travel bookings done in a jiffy at flat 30% OFF',
+  //   buttonText: 'Book Now',
+  // };
 
   return (
     <div className="section blogdetail">
@@ -49,7 +49,7 @@ const BlogDetailPage = async ({ params }: { params: { id: string } }) => {
 
         {/* Blog Content */}
         <div className="blog-content">
-          <AdvertisementCard description={advertisement.description} buttonText={advertisement.buttonText} />
+          {/* <AdvertisementCard description={advertisement.description} buttonText={advertisement.buttonText} /> */}
           <div
             className="text-gray-700 mb-4 middle"
             dangerouslySetInnerHTML={{ __html: blog.content }}
