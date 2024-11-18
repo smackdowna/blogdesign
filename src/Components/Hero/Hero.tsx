@@ -11,7 +11,7 @@ const Hero = () => {
                 <ContentSlider/>
                
 
-               <Image src={IMAGES.heroImage} alt="right-arrow" className="w-full md:max-w-[330px] xl:max-w-[550px] rounded-t-none xl:rounded-t-2xl" />
+               <Image src={IMAGES.heroImage} alt="right-arrow" className="w-full md:max-w-[330px] xl:max-w-[550px] h-full md:h-[500px] rounded-t-none xl:rounded-t-2xl" />
             </div>
         </div>
     );

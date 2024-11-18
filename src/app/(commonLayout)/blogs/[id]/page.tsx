@@ -2,7 +2,7 @@ import Image from 'next/image';
 // import NewsletterSubscribe from '../../components/NewsletterSubscribe/NewsletterSubscribe';
 import './slug.css';
 import AdvertisementCard from '../../../../Components//Shared/AdvertisementCard/AdvertisementCard';
-import { formatDate } from '@/utils/convertDate';
+// import { formatDate } from '@/utils/convertDate';
 
 const BlogDetailPage = async ({ params }: { params: { id: string } }) => {
   const response = await fetch(`https://blogbackend-theta.vercel.app/api/v1/blog/${params.id}`);
@@ -32,10 +32,11 @@ const BlogDetailPage = async ({ params }: { params: { id: string } }) => {
         {/* Blog Header */}
         <div className="blog-head flex flex-col gap-2 mb-4">
           <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
-          <div className="flex flex-col gap-1">
+          {/* Author info */}
+          {/* <div className="flex flex-col gap-1">
             <p className="text-sm text-gray-600">Author: {blog.author?.full_name || 'Unknown'}</p>
             <p className="text-sm text-gray-600">Date: {formatDate(blog.createdAt)}</p>
-          </div>
+          </div> */}
         </div>
 
         {/* Blog Image */}
@@ -44,11 +45,11 @@ const BlogDetailPage = async ({ params }: { params: { id: string } }) => {
           alt={blog.title}
           width={800}
           height={400}
-          className="mb-4 w-full h-[400px] object-cover"
+          className="mb-4 w-full h-[400px] object-cover rounded-lg"
         />
 
         {/* Blog Content */}
-        <div className="blog-content">
+        <div className="flex flex-col lg:flex-row gap-10">
           <AdvertisementCard description={advertisement.description} buttonText={advertisement.buttonText} />
           <div
             className="text-gray-700 mb-4 middle"

@@ -57,9 +57,9 @@ const Navbar = () => {
               className={`${pathname === "/" ? "text-white bg-primary-30" : "text-black bg-primary-40"} pl-11 max-w-[185px] pr-4 py-2 rounded-lg shadow-custom focus:outline-none`}
             />
           </div>
-          <button className={`${pathname === "/" ? "bg-primary-40 text-primary-10" : "bg-primary-10 text-white"} rounded-lg px-4 py-2 text-primary-10 font-semibold leading-[22px]`}>
+          {/* <button className={`${pathname === "/" ? "bg-primary-40 text-primary-10" : "bg-primary-10 text-white"} rounded-lg px-4 py-2 text-primary-10 font-semibold leading-[22px]`}>
             Subscribe
-          </button>
+          </button> */}
           <HamburgerMenu />
         </div>
       </div>

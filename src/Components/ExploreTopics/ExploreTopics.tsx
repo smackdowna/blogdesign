@@ -135,54 +135,58 @@ const ExploreTopics = () => {
         </div>
 
         <Swiper
-          spaceBetween={20}
-          slidesPerView={4}
-          navigation={{
-            prevEl: prevButtonRef.current as HTMLElement,
-            nextEl: nextButtonRef.current as HTMLElement,
-          } as NavigationOptions}
-          modules={[Navigation, Pagination]}
-          pagination={{
-            clickable: true,
-          }}
-          breakpoints={{
-            360: { slidesPerView: 1.4 }, // For small screens
-            640: { slidesPerView: 2 }, // For small screens
-            768: { slidesPerView: 3 }, // For medium screens
-            1024: { slidesPerView: 4 }, // For large screens
-            1366: { slidesPerView: 4.2 }, // For large screens
-          }}
-          onSwiper={(swiper) => {
-            setTimeout(() => {
-                // Enable navigation buttons after swiper initialization
-                if (swiper?.params?.navigation) {
-                  (swiper.params.navigation as NavigationOptions).prevEl = prevButtonRef.current;
-                  (swiper.params.navigation as NavigationOptions).nextEl = nextButtonRef.current;
-                  swiper.navigation.init();
-                  swiper.navigation.update();
-                }
-              });
-            }}
-          className="mt-[18px] pb-10"
-        >
-          {categories?.map((category:TCategory, index) => (
-            <SwiperSlide key={index}>
-              <div className="bg-primary-70 rounded-lg w-[222px] h-[262px] mb-12 relative">
-  <Image
-    fill
-    src={category.thumbnail.thumbnailUrl}
-    alt="feature-category"
-    className="rounded-t-lg object-cover"
-  />
-  <Link href={`/category/${category.name}`} className="text-primary-10 font-medium leading-6 flex items-center justify-center py-2 gap-2 absolute bottom-0 w-full bg-primary-70 rounded-b-lg">
-    {category.name}
-    <Image src={ICONS.view} alt="view-icon" className="w-6 h-6" />
-  </Link>
-</div>
+  spaceBetween={20}
+  slidesPerView={4}
+  navigation={{
+    prevEl: prevButtonRef.current as HTMLElement,
+    nextEl: nextButtonRef.current as HTMLElement,
+  } as NavigationOptions}
+  modules={[Navigation, Pagination]}
+  pagination={{
+    clickable: true,
+  }}
+  breakpoints={{
+    360: { slidesPerView: 1.4 },
+    640: { slidesPerView: 2 },
+    768: { slidesPerView: 3 },
+    1024: { slidesPerView: 4 },
+    1366: { slidesPerView: 4.2 },
+  }}
+  onSwiper={(swiper) => {
+    setTimeout(() => {
+      if (swiper?.params?.navigation) {
+        (swiper.params.navigation as NavigationOptions).prevEl =
+          prevButtonRef.current;
+        (swiper.params.navigation as NavigationOptions).nextEl =
+          nextButtonRef.current;
+        swiper.navigation.init();
+        swiper.navigation.update();
+      }
+    });
+  }}
+  className="mt-[18px] pb-10"
+>
+  {categories?.map((category: TCategory, index) => (
+    <SwiperSlide key={index}>
+      {/* Make the entire card clickable */}
+      <Link href={`/category/${category.name}`}>
+        <div className="bg-primary-70 rounded-lg w-[222px] h-[262px] mb-12 relative cursor-pointer">
+          <Image
+            fill
+            src={category.thumbnail.thumbnailUrl}
+            alt="feature-category"
+            className="rounded-t-lg object-cover"
+          />
+          <div className="text-primary-10 font-medium leading-6 flex items-center justify-center py-2 gap-2 absolute bottom-0 w-full bg-primary-70 rounded-b-lg">
+            {category.name}
+            <Image src={ICONS.view} alt="view-icon" className="w-6 h-6" />
+          </div>
+        </div>
+      </Link>
+    </SwiperSlide>
+  ))}
+</Swiper>
 
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </div>
     </Container>
   );

@@ -20,11 +20,12 @@ import angleDown from "./Icons/angle-down.svg";
 import travelIcon1Black from "./Icons/travelIcon1-black.svg";
 import travelIcon2Black from "./Icons/travelIcon2-black.svg";
 import travelIcon3Black from "./Icons/travelIcon3-black.svg";
-import menuBlue from "./Icons/menuBlue.svg"
-import advertismentImage from './Icons/Group 61.svg'
+import menuBlue from "./Icons/menuBlue.svg";
+import advertismentImage from './Icons/Group 61.svg';
+import dot from './Icons/dot.svg';
 
 // Importing images
-import heroImage from "./Images/hero-image.png";
+import heroImage from "./Images/hero-image.jpg";
 import featuredPostImg from "./Images/featured-post.png";
 import travelHeroImg from "./Images/travelHero.jpg";
 import author from "./Images/author.jpg";
@@ -52,7 +53,8 @@ export const ICONS = {
     travelIcon2Black,
     travelIcon3Black,
     menuBlue,
-    advertismentImage
+    advertismentImage,
+    dot
  
 }
 
