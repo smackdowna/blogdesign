@@ -18,6 +18,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ title, tags, description, author, date, imageUrl }) => {
+    console.log(tags)
     const truncateContent = (text: string, limit: number) => {
         return text.length > limit ? `${text.slice(0, limit)}...` : text;
       };

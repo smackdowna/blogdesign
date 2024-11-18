@@ -45,9 +45,9 @@ const ExploreBlogs: React.FC<ExploreBlogsProps> = ({ subCategory }) => {
     <div className="section ExploreBlogs overflow-hidden">
       <div className="title">
         <h4>Explore the blogs</h4>
-        <p className="font-medium">
+        {/* <p className="font-medium">
           Join me on a delightful journey filled with travel tales, tasty recipes, and lifestyle tips that inspire warmth and connection.
-        </p>
+        </p> */}
       </div>
 
       {/* Tabs */}
