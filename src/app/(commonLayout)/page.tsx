@@ -34,13 +34,10 @@ export type TCategorySection= {
 }
 
 export default async function page() {
-  const response = await fetch("https://blogbackend-theta.vercel.app/api/v1/blog", {
-    cache : 'no-store'
-  });
+  const response = await fetch("https://blogbackend-theta.vercel.app/api/v1/blog");
   const dynamicPosts = await response.json();
-  console.log(dynamicPosts)
 
-  // console.log(dynamicPosts);
+  console.log(response);
   // console.log(Array.isArray(dynamicPosts.data));
 
   const homePageCategorizedPosts : TCategorySection[] = [
