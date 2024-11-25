@@ -1,6 +1,9 @@
-import Hero from "../../Components/Hero/Hero";
-import CategorizedPosts from "../../Components/CategorizedPosts/CategorizedPosts";
-import ExploreTopics from "../../Components/ExploreTopics/ExploreTopics";
+import dynamic from "next/dynamic";
+
+const CategorizedPosts = dynamic(() => import("../../Components/CategorizedPosts/CategorizedPosts"), { ssr: false });
+const Hero = dynamic(() => import("../../Components/Hero/Hero"), { ssr: false });
+const ExploreTopics = dynamic(() => import("../../Components/ExploreTopics/ExploreTopics"), { ssr: false });
+
 // import NewsletterSubscribe from "./components/NewsletterSubscribe/NewsletterSubscribe";
 
 export type TPost= {
@@ -36,8 +39,6 @@ export type TCategorySection= {
 export default async function page() {
   const response = await fetch("https://blogbackend-theta.vercel.app/api/v1/blog");
   const dynamicPosts = await response.json();
-
-  console.log(response);
   // console.log(Array.isArray(dynamicPosts.data));
 
   const homePageCategorizedPosts : TCategorySection[] = [
@@ -83,9 +84,6 @@ export default async function page() {
       data : dynamicPosts?.data?.filter((data:TPost) => data?.category.name === "Reviews")
     },
   ];
-
-
-
 
   return (
     <div className="flex flex-col">
