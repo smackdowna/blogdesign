@@ -55,17 +55,32 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content, author, created
     ? `${title.slice(0, 40)}...`
     : title;
 
+    const htmlToPlainText = (html: string): string => {
+      // Create a new DOMParser instance
+      const parser = new DOMParser();
+      
+      // Parse the HTML string to a document
+      const doc = parser.parseFromString(html, 'text/html');
+      
+      // Extract and return the plain text from the document
+      return doc.body.textContent || '';
+    };
+
+    const plainText = htmlToPlainText(content);
+    
+
   const truncatedDescription = isLargeScreen
-    ? content.length > 50
-      ? `${content.slice(0, 50)}...`
-      : content
+    ? plainText.length > 50
+      ? `${plainText.slice(0, 50)}...`
+      : plainText
     : isMediumScreen
-    ? content.length > 100
-      ? `${content.slice(0, 100)}...`
-      : content
-    : content.length > 30
-    ? `${content.slice(0, 30)}...`
-    : content;
+    ? plainText.length > 100
+      ? `${plainText.slice(0, 100)}...`
+      : plainText
+    : plainText.length > 30
+    ? `${plainText.slice(0, 30)}...`
+    : plainText;
+    console.log(truncatedDescription)
 
 
   return (
@@ -85,9 +100,10 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content, author, created
         <h1 className="text-black text-sm md:text-base font-semibold leading-normal md:leading-6 lg:leading-[20.8px]">
           {truncatedTitle}
         </h1>
-        <p className="text-neutral-10 text-sm md:text-base leading-normal md:leading-6 xl:leading-[20.8px] mt-[10px]">
+        {/* <p className="text-neutral-10 text-sm md:text-base leading-normal md:leading-6 xl:leading-[20.8px] mt-[10px]" >
           {truncatedDescription}
-        </p>
+        </p> */}
+        <p className="text-neutral-10 text-sm md:text-base leading-normal md:leading-6 xl:leading-[20.8px] mt-[10px]" dangerouslySetInnerHTML={{ __html: truncatedDescription }}/>
 
         <div className="flex items-center justify-between mt-4">
           <p className="text-neutral-20 text-xs md:text-sm leading-normal md:leading-6 xl:leading-[20.8px]">

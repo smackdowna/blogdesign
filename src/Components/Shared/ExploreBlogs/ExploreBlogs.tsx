@@ -40,6 +40,7 @@ const ExploreBlogs: React.FC<ExploreBlogsProps> = ({ subCategory }) => {
 
   // Filter blogs based on the active tab (subcategory name)
   const filteredBlogs = allBlogs?.filter((blog) => blog.subCategory === activeTab);
+  console.log(filteredBlogs)
 
   return (
     <div className="section ExploreBlogs overflow-hidden">

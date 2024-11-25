@@ -2,7 +2,7 @@
 import Image, { StaticImageData } from "next/image";
 import { motion } from 'framer-motion'; // Import motion
 import './Card.css'
-import { formatDate } from "@/utils/convertDate";
+// import { formatDate } from "@/utils/convertDate";
 
 interface CardProps {
     title: string;
@@ -17,7 +17,11 @@ interface CardProps {
     imageUrl: string | StaticImageData;
 }
 
-const Card: React.FC<CardProps> = ({ title, tags, description, author, date, imageUrl }) => {
+// blog
+// nde server (Domain)
+// dental
+
+const Card: React.FC<CardProps> = ({ title, tags, description, imageUrl }) => {
     console.log(tags)
     const truncateContent = (text: string, limit: number) => {
         return text.length > limit ? `${text.slice(0, limit)}...` : text;
@@ -45,10 +49,10 @@ const Card: React.FC<CardProps> = ({ title, tags, description, author, date, ima
                             height={50} 
                         />
                     </div> */}
-                    <div className="details flex flex-col h-full justify-between">
+                    {/* <div className="details flex flex-col h-full justify-between">
                         <h5>{author?.full_name}</h5>
                         <p>{formatDate(date)}</p>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="tags flex flex-wrap gap-3 mt-2">
