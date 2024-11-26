@@ -28,7 +28,7 @@ type TCategory={
     thumbnailUrl:string;
     _id:string;
   }
-}
+};
 
 const ExploreTopics = () => {
   const [categories, setCategories]=useState([])
@@ -41,7 +41,6 @@ const ExploreTopics = () => {
     fetchCategories()
 
   }, []);
-  console.log(categories)
   const prevButtonRef = useRef<HTMLDivElement>(null);
   const nextButtonRef = useRef<HTMLDivElement>(null);
 
