@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
 
-const CategorizedPosts = dynamic(() => import("../../Components/CategorizedPosts/CategorizedPosts"), { ssr: false });
-const Hero = dynamic(() => import("../../Components/Hero/Hero"), { ssr: false });
-const ExploreTopics = dynamic(() => import("../../Components/ExploreTopics/ExploreTopics"), { ssr: false });
+const CategorizedPosts = dynamic(() => import("../../Components/HomePage/CategorizedPosts/CategorizedPosts"), { ssr: false });
+const Hero = dynamic(() => import("../../Components/HomePage/Hero/Hero"), { ssr: false });
+const ExploreTopics = dynamic(() => import("../../Components/HomePage/ExploreTopics/ExploreTopics"), { ssr: false });
 
 // import NewsletterSubscribe from "./components/NewsletterSubscribe/NewsletterSubscribe";
 

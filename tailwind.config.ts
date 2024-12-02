@@ -26,6 +26,8 @@ const config: Config = {
           70: "#F6F6F6",
           80: "#F7F7FC",
           90 : '#E6E3DC',
+          100 : "#D9D9D9",
+          110 : "#F4F4F5"
         },
         neutral: {
           5 : "#333",
@@ -41,6 +43,7 @@ const config: Config = {
           90: "#1a1a1a5c",      //rgba(26, 26, 26, 0.36)
           95: "#1a1a1ab3",      //rgba(26, 26, 26, 0.70)
           100: "#333743",
+          110 : "#605E5C"
         },
         black : '#000',
         white : '#FFFFFF',

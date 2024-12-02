@@ -80,7 +80,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, title, content, author, created
     : plainText.length > 30
     ? `${plainText.slice(0, 30)}...`
     : plainText;
-    console.log(truncatedDescription)
 
 
   return (

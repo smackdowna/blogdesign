@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
-import AdvertisementCard from "../../../../Components//Shared/AdvertisementCard/AdvertisementCard";
-import TableOfContents from "@/Components/TableOfContents/TableOfContents";
+import AdvertisementCard from "../../../../Components/BlogDetailsPage/AdvertisementCard/AdvertisementCard";
+import TableOfContents from "@/Components/BlogDetailsPage/TableOfContents/TableOfContents";
 
 const BlogDetailPage = async ({ params }: { params: { id: string } }) => {
   const response = await fetch(
@@ -10,7 +10,6 @@ const BlogDetailPage = async ({ params }: { params: { id: string } }) => {
   const dynamicPosts = await response.json();
 
   const blog = dynamicPosts?.data?.[0] || null;
-  console.log(blog);
 
   if (!blog) {
     return (
@@ -41,7 +40,7 @@ const BlogContent = ({ blog, advertisement }: any) => {
         </h1>
 
         {/* Blog Image */}
-        <div className="relative w-full h-[200px] md:h-[400px] px-0 md:px-8 xl:px-0">
+        <div className="relative w-full h-[200px] md:h-[400px] px-0 md:px-8 xl:px-0 mt-5">
           <Image
             src={blog.thumbnail?.thumbnailUrl || "/default-thumbnail.jpg"}
             alt={blog.title}
