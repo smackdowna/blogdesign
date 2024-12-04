@@ -37,7 +37,9 @@ export type TCategorySection= {
 }
 
 export default async function page() {
-  const response = await fetch("https://blogbackend-theta.vercel.app/api/v1/blog");
+  const response = await fetch("https://blogbackend-theta.vercel.app/api/v1/blog", {
+    cache : 'no-store'
+  });
   const dynamicPosts = await response.json();
   // console.log(Array.isArray(dynamicPosts.data));
 
