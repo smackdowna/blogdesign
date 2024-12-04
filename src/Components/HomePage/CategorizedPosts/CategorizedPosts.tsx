@@ -1,8 +1,8 @@
 import Container from "@/Components/Container/Container";
 import Heading from "@/Components/Shared/Heading/Heading";
 import React from "react";
-import { TCategorySection } from "../../app/(commonLayout)/page";
-import BlogCard from "@/Components/Shared/BlogCard/BlogCard";
+import { TCategorySection } from "../../../app/(commonLayout)/page";
+import BlogCard from "@/Components/HomePage/CategorizedPosts/BlogCard";
 
 interface CategorizedPostsProps {
   section: TCategorySection;

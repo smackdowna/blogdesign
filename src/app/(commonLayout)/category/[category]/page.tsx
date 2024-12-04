@@ -1,15 +1,12 @@
-
 // import NewsletterSubscribe from "../../components/NewsletterSubscribe/NewsletterSubscribe";
-import CategoryHero from "@/Components/Shared/CategoryHero/CategoryHero";
-import ExploreBlogs from "@/Components/Shared/ExploreBlogs/ExploreBlogs";
+import CategoryHero from "@/Components/CategoryPage/CategoryHero/CategoryHero";
+import ExploreBlogs from "@/Components/CategoryPage/ExploreBlogs/ExploreBlogs";
 
 const CategoryPage = async ({ params }: { params: { category: string } }) => {
   const response = await fetch(
     `https://blogbackend-theta.vercel.app/api/v1/category/${params.category}`
   );
   const dynamicCategoryData = await response.json();
-
-  console.log("category",dynamicCategoryData)
 
   return (
     <>

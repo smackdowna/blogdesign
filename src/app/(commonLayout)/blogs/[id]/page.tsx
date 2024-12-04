@@ -1,16 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+"use client"
+import AdvertisementCard from "@/Components/BlogDetailsPage/AdvertisementCard/AdvertisementCard";
+import TableOfContents from "@/Components/BlogDetailsPage/TableOfContents/TableOfContents";
 import Image from "next/image";
-import AdvertisementCard from "../../../../Components//Shared/AdvertisementCard/AdvertisementCard";
-import TableOfContents from "@/Components/TableOfContents/TableOfContents";
+import { useEffect, useState } from "react";
 
-const BlogDetailPage = async ({ params }: { params: { id: string } }) => {
-  const response = await fetch(
-    `https://blogbackend-theta.vercel.app/api/v1/blog/${params.id}`
-  );
-  const dynamicPosts = await response.json();
+const BlogDetailPage =  ({ params }: { params: { id: string } }) => {
+  const [blog, setBlog] = useState<any>(null);
 
-  const blog = dynamicPosts?.data?.[0] || null;
-  console.log(blog);
+  useEffect(() => {
+    const fetchBlog = async () => {
+      const response = await fetch(
+        `https://blogbackend-theta.vercel.app/api/v1/blog/${params.id}`
+      );
+      const dynamicPosts = await response.json();
+      setBlog(dynamicPosts?.data?.[0]);
+    };
+
+    fetchBlog();
+  }, [params.id]);
 
   if (!blog) {
     return (
@@ -30,8 +38,28 @@ const BlogDetailPage = async ({ params }: { params: { id: string } }) => {
   return <BlogContent blog={blog} advertisement={advertisement} />;
 };
 
-// Separate functional component for dynamic content
 const BlogContent = ({ blog, advertisement }: any) => {
+  const [contentWithIds, setContentWithIds] = useState<string>(blog.content);
+
+  const addIdsToHeadings = (htmlContent: string) => {
+    if (typeof window !== "undefined" && window.DOMParser) {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(htmlContent, "text/html");
+      const headingElements = doc.querySelectorAll("h1, h2, h3, h4, h5, h6");
+      headingElements.forEach((el, index) => {
+        el.id = `heading-${index + 1}`;
+      });
+
+      return doc.body.innerHTML;
+    }
+    return htmlContent;
+  };
+
+  useEffect(() => {
+    const updatedContent = addIdsToHeadings(blog.content);
+    setContentWithIds(updatedContent);
+  }, [blog.content]);
+
   return (
     <div className="max-w-[1440px] w-full mx-auto px-0 xl:px-[150px]">
       <div className="max-w-[1440px] w-full mx-auto">
@@ -68,7 +96,7 @@ const BlogContent = ({ blog, advertisement }: any) => {
 
           <div
             className="text-gray-700 flex-1 px-4 md:px-8 xl:px-0"
-            dangerouslySetInnerHTML={{ __html: blog.content }}
+            dangerouslySetInnerHTML={{ __html: contentWithIds }}
           ></div>
 
           {/* Scrollable Table of Contents */}
