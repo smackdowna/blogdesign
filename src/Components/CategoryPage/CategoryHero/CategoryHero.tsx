@@ -48,7 +48,7 @@ const CategoryHero: React.FC<CategoryHeroProps> = ({
             {description.map((desc, index) => (
               <motion.div
                 key={index}
-                className="text-sm flex items-start lg:items-center gap-4"
+                className="text-sm flex items-start lg:items-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -62,7 +62,7 @@ const CategoryHero: React.FC<CategoryHeroProps> = ({
       </div>
 
       {/* For mobile */}
-      <div className="md:hidden flex flex-col gap-[56px] px-4 mt-6">
+      <div className="md:hidden flex flex-col gap-5 px-4 mt-6">
         {description.map((desc, index) => (
           <motion.div
             key={index}
