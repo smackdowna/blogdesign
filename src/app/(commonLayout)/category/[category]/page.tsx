@@ -4,7 +4,9 @@ import ExploreBlogs from "@/Components/CategoryPage/ExploreBlogs/ExploreBlogs";
 
 const CategoryPage = async ({ params }: { params: { category: string } }) => {
   const response = await fetch(
-    `https://blogbackend-theta.vercel.app/api/v1/category/${params.category}`
+    `https://blogbackend-theta.vercel.app/api/v1/category/${params.category}`, {
+      cache : 'no-store'
+    }
   );
   const dynamicCategoryData = await response.json();
 
