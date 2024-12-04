@@ -8,7 +8,7 @@ const TableOfContents = ({ blog }: { blog: any }) => {
     <div>
       <ul className="bg-primary-65 md:bg-white flex flex-col gap-3 border border-primary-55 p-4 md:rounded-2xl w-full h-fit font-Inter">
       <h3 className="font-semibold text-lg border-b pb-2">Table of Contents</h3>
-        {headings.map((heading:any, index:number) => {
+        {headings?.map((heading:any, index:number) => {
           const text = heading.replace(/<[^>]*>/g, '');
           const id = `heading-${index + 1}`;
           return (

@@ -45,7 +45,7 @@ const ExploreBlogs: React.FC<ExploreBlogsProps> = ({ subCategory }) => {
       {/* Tabs */}
       <div className="bg-primary-110 flex items-center gap-[2px] w-fit max-w-full md:max-w-[448px] mx-0 md:mx-auto h-11 rounded-[10px] overflow-x-auto">
   {
-    subCategory.map((category, index) => (
+    subCategory?.map((category, index) => (
       <button
         key={index}
         onClick={() => setActiveTab(category.name)}
