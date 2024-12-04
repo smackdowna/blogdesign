@@ -84,13 +84,13 @@ const ContentSlider = () => {
           className="ease-linear duration-500 flex transform-gpu"
           style={{ transform: `translateX(-${currentSlider * 100}%)` }}
         >
-          {contents.map((content, index) => (
+          {contents?.map((content, index) => (
             <div key={index} className="min-w-full flex flex-col gap-[27px]">
               <h1 className="text-white text-2xl md:text-[30px] xl:text-[48px] font-semibold leading-normal">
                 {content.title}
               </h1>
               <div className="flex flex-col gap-[6px]">
-                {content.description.map((description, index) => (
+                {content.description?.map((description, index) => (
                   <div key={index} className="flex items-center gap-[2px]">
                     <Image
                       src={ICONS.rightArrow}

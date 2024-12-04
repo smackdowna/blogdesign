@@ -92,7 +92,7 @@ export default async function page() {
       <Hero/>
       <div className='bg-primary-60 py-[64px] flex flex-col gap-[64px]'>
       {
-        homePageCategorizedPosts.map((section, index) => 
+        homePageCategorizedPosts?.map((section, index) => 
         <CategorizedPosts key={index} section={section} />
         )
       }
