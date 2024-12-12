@@ -2,6 +2,7 @@
 "use client"
 import AdvertisementCard from "@/Components/BlogDetailsPage/AdvertisementCard/AdvertisementCard";
 import TableOfContents from "@/Components/BlogDetailsPage/TableOfContents/TableOfContents";
+import Loader from "@/Components/Loader/Loader";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -22,10 +23,8 @@ const BlogDetailPage =  ({ params }: { params: { id: string } }) => {
 
   if (!blog) {
     return (
-      <div className="section blogdetail">
-        <div className="container mx-auto px-4 py-8">
-          <h1 className="text-3xl font-bold text-center">Blog Not Found</h1>
-        </div>
+      <div className="h-screen flex items-center justify-center">
+        <Loader/>
       </div>
     );
   }
@@ -69,13 +68,14 @@ const BlogContent = ({ blog, advertisement }: any) => {
         </h1>
 
         {/* Blog Image */}
-        <div className="relative w-full h-[200px] md:h-[400px] px-0 md:px-8 xl:px-0">
+        <div className="relative w-full h-[200px] md:h-[400px] xl:h-[600px] px-0 md:px-8 xl:px-0 mt-3">
           <Image
             src={blog.thumbnail?.thumbnailUrl || "/default-thumbnail.jpg"}
             alt={blog.title}
             layout="fill"
             objectFit="cover"
-            className="rounded-lg"
+            quality={100}
+            className="rounded-lg h-full"
           />
         </div>
 
