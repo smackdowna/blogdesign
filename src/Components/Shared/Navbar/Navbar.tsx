@@ -7,6 +7,7 @@ import { navlinks } from "./navbar.constants";
 import "./nav.css";
 import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
 import { useEffect, useState } from "react";
+import Container from "@/Components/Container/Container";
 
 type TSubCategory = {
   _id: string;
@@ -69,8 +70,10 @@ const Navbar = () => {
         pathname === "/"
           ? "bg-primary-10 text-white"
           : "bg-white text-primary-10"
-      } w-full px-4 md:px-8 xl:px-[150px] font-Inter`}
+      } w-full font-Inter`}
     >
+      {/*  px-4 md:px-8 xl:px-[150px] */}
+      <Container>
       <div className="max-w-[1440px] mx-auto flex items-center justify-between py-6">
         {/* Logo */}
         <Link
@@ -139,6 +142,7 @@ const Navbar = () => {
           <HamburgerMenu />
         </div>
       </div>
+      </Container>
     </div>
   );
 };

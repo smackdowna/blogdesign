@@ -2,6 +2,7 @@
 import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 import { IMAGES, ICONS } from "@/public/assets";
+import Container from "@/Components/Container/Container";
 
 interface CategoryHeroProps {
   title: string;

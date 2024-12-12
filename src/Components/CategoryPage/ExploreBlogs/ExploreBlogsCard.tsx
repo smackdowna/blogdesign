@@ -53,9 +53,9 @@ const ExploreBlogsCard: React.FC<TExploreBlogsCardProps> = ({
       <Image
         src={imageUrl}
         alt={title}
-        className="rounded-xl w-full"
+        className="rounded-xl w-full max-w-[497px] h-full max-h-[310px] object-cover"
         width={497}
-        height={310}
+        height={0}
       />
     </div>
   );
