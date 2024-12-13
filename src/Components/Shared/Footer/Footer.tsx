@@ -1,7 +1,7 @@
 import Container from "@/Components/Container/Container";
 import Image from "next/image";
 import Link from "next/link";
-import {  socialLinks } from "./footer.constants";
+import { socialLinks } from "./footer.constants";
 
 const Footer = () => {
   const footerLinks = [
@@ -22,12 +22,10 @@ const Footer = () => {
       path: "/privacy-policy",
     },
   ];
-  
+
   return (
     <Container>
       <div className="border-t border-neutral-70 pt-8 pb-10 font-Inter flex flex-col gap-4 mt-[50px]">
-        
-
         {/* <div className="flex flex-col lg:flex-row gap-0 md:gap-4 justify-between">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-0 justify-between">
             <p className="text-neutral-90 font-medium leading-6">
@@ -65,21 +63,24 @@ const Footer = () => {
         </div> */}
 
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-0 justify-between">
-          
-            <div className="flex items-center gap-5">
+          <div className="flex flex-wrap items-center gap-5">
             {footerLinks.map((link, index) => (
-            <Link key={index} href={link.path} className="text-neutral-5 font-medium leading-6 hover:underline">
+              <Link
+                key={index}
+                href={link.path}
+                className="text-neutral-5 font-medium leading-6 hover:underline"
+              >
                 {link.label}
-            </Link>
-        ))}
-            </div>
-            <div className="flex items-center gap-4">
-              {socialLinks.map((link, index) => (
-                <Link key={index} href={link.path}>
-                  <Image src={link.icon} alt="blog-logo" className="size-8" />
-                </Link>
-              ))}
-            </div>
+              </Link>
+            ))}
+          </div>
+          <div className="flex items-center gap-4">
+            {socialLinks.map((link, index) => (
+              <Link key={index} href={link.path}>
+                <Image src={link.icon} alt="blog-logo" className="size-8" />
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </Container>
