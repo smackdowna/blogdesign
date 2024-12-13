@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client"
+"use client";
 import AdvertisementCard from "@/Components/BlogDetailsPage/AdvertisementCard/AdvertisementCard";
 import TableOfContents from "@/Components/BlogDetailsPage/TableOfContents/TableOfContents";
 import Loader from "@/Components/Loader/Loader";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const BlogDetailPage =  ({ params }: { params: { id: string } }) => {
+const BlogDetailPage = ({ params }: { params: { id: string } }) => {
   const [blog, setBlog] = useState<any>(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const BlogDetailPage =  ({ params }: { params: { id: string } }) => {
   if (!blog) {
     return (
       <div className="h-screen flex items-center justify-center">
-        <Loader/>
+        <Loader />
       </div>
     );
   }
@@ -73,9 +73,10 @@ const BlogContent = ({ blog, advertisement }: any) => {
             src={blog.thumbnail?.thumbnailUrl || "/default-thumbnail.jpg"}
             alt={blog.title}
             layout="fill"
+            fill
             objectFit="cover"
             quality={100}
-            className="rounded-lg h-full"
+            className=" object-cover object-center w-full h-full"
           />
         </div>
 

@@ -16,30 +16,31 @@ type TSubCategory = {
   name: string;
 };
 
-type TCategory={
-  _id:string;
-  name:string;
-  description:string[];
-  subCategories:TSubCategory[]
-  thumbnail:{
-    fileId:string;
-    name:string;
-    url:string;
-    thumbnailUrl:string;
-    _id:string;
-  }
+type TCategory = {
+  _id: string;
+  name: string;
+  description: string[];
+  subCategories: TSubCategory[];
+  thumbnail: {
+    fileId: string;
+    name: string;
+    url: string;
+    thumbnailUrl: string;
+    _id: string;
+  };
 };
 
 const ExploreTopics = () => {
-  const [categories, setCategories]=useState([])
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fetchCategories = async () => {
-      const response = await fetch('https://blogbackend-theta.vercel.app/api/v1/category');
+      const response = await fetch(
+        "https://blogbackend-theta.vercel.app/api/v1/category"
+      );
       const data = await response.json();
-      setCategories(data)
-    }
-    fetchCategories()
-
+      setCategories(data);
+    };
+    fetchCategories();
   }, []);
   const prevButtonRef = useRef<HTMLDivElement>(null);
   const nextButtonRef = useRef<HTMLDivElement>(null);
@@ -134,58 +135,63 @@ const ExploreTopics = () => {
         </div>
 
         <Swiper
-  spaceBetween={20}
-  slidesPerView={4}
-  navigation={{
-    prevEl: prevButtonRef.current as HTMLElement,
-    nextEl: nextButtonRef.current as HTMLElement,
-  } as NavigationOptions}
-  modules={[Navigation, Pagination]}
-  pagination={{
-    clickable: true,
-  }}
-  breakpoints={{
-    360: { slidesPerView: 1.4 },
-    640: { slidesPerView: 2 },
-    768: { slidesPerView: 3 },
-    1024: { slidesPerView: 4 },
-    1366: { slidesPerView: 4.2 },
-  }}
-  onSwiper={(swiper) => {
-    setTimeout(() => {
-      if (swiper?.params?.navigation) {
-        (swiper.params.navigation as NavigationOptions).prevEl =
-          prevButtonRef.current;
-        (swiper.params.navigation as NavigationOptions).nextEl =
-          nextButtonRef.current;
-        swiper.navigation.init();
-        swiper.navigation.update();
-      }
-    });
-  }}
-  className="mt-[18px] pb-10"
->
-  {categories?.map((category: TCategory, index) => (
-    <SwiperSlide key={index}>
-      {/* Make the entire card clickable */}
-      <Link href={`/category/${category.name}`}>
-        <div className="bg-primary-70 rounded-lg w-[222px] h-[262px] mb-12 relative cursor-pointer">
-          <Image
-            fill
-            src={category.thumbnail.thumbnailUrl}
-            alt="feature-category"
-            className="rounded-t-lg object-cover"
-          />
-          <div className="text-primary-10 font-medium leading-6 flex items-center justify-center py-2 gap-2 absolute bottom-0 w-full bg-primary-70 rounded-b-lg">
-            {category.name}
-            <Image src={ICONS.view} alt="view-icon" className="w-6 h-6" />
-          </div>
-        </div>
-      </Link>
-    </SwiperSlide>
-  ))}
-</Swiper>
-
+          spaceBetween={20}
+          slidesPerView={4}
+          navigation={
+            {
+              prevEl: prevButtonRef.current as HTMLElement,
+              nextEl: nextButtonRef.current as HTMLElement,
+            } as NavigationOptions
+          }
+          modules={[Navigation, Pagination]}
+          pagination={{
+            clickable: true,
+          }}
+          breakpoints={{
+            360: { slidesPerView: 1.4 },
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
+            1366: { slidesPerView: 4.2 },
+          }}
+          onSwiper={(swiper) => {
+            setTimeout(() => {
+              if (swiper?.params?.navigation) {
+                (swiper.params.navigation as NavigationOptions).prevEl =
+                  prevButtonRef.current;
+                (swiper.params.navigation as NavigationOptions).nextEl =
+                  nextButtonRef.current;
+                swiper.navigation.init();
+                swiper.navigation.update();
+              }
+            });
+          }}
+          className="mt-[18px] pb-10"
+        >
+          {categories?.map((category: TCategory, index) => (
+            <SwiperSlide key={index}>
+              {/* Make the entire card clickable */}
+              <Link href={`/category/${category.name}`}>
+                <div className="bg-primary-70 rounded-lg w-[222px] h-[262px] mb-12 relative cursor-pointer">
+                  <Image
+                    fill
+                    src={category.thumbnail.thumbnailUrl}
+                    alt="feature-category"
+                    className="rounded-t-lg object-cover"
+                  />
+                  <div className="text-primary-10 font-medium leading-6 flex items-center justify-center py-2 gap-2 absolute bottom-0 w-full bg-primary-70 rounded-b-lg">
+                    {category.name}
+                    <Image
+                      src={ICONS.view}
+                      alt="view-icon"
+                      className="w-6 h-6"
+                    />
+                  </div>
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </Container>
   );
