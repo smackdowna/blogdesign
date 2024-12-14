@@ -70,7 +70,7 @@ const BlogContent = ({ blog }: any) => {
         </h1>
 
         {/* Breadcrumbs */}
-        <div className="flex items-center gap-3 text-sm font-Inter mt-1">
+        <div className="flex items-center gap-3 text-sm font-Inter mt-1 px-4 md:px-8 xl:px-0">
           <Link href={"/"} className="text-primary-10 hover:underline">Home</Link>
          <Image src={ICONS.rightArrow2} alt="right-arrow" className="size-3"/>
           <Link href={`/category/${blog?.category?.name}`} className="text-primary-10 hover:underline font-medium">{blog?.category?.name}</Link>
