@@ -1,8 +1,9 @@
 // Importing icons
-import logo from "./Icons/blog-logo.svg";
+import logo from "./Icons/Logo.svg";
 import footerLogo from "./Icons/i_logo.svg";
 import searchIcon from "./Icons/search-icon.svg";
 import rightArrow from "./Icons/right-arrow.svg";
+import rightArrow2 from "./Icons/right-arrow2.svg";
 import rightIcon from "./Icons/right-icon.svg";
 import lefttIcon from "./Icons/left-icon.svg";
 import view from "./Icons/view-icon.svg";
@@ -35,6 +36,7 @@ export const ICONS = {
     footerLogo,
     searchIcon,
     rightArrow,
+    rightArrow2,
     rightIcon,
     lefttIcon,
     view,
@@ -54,7 +56,7 @@ export const ICONS = {
     travelIcon3Black,
     menuBlue,
     advertismentImage,
-    dot
+    dot,
  
 }
 

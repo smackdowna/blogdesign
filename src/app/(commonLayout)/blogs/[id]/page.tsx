@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import AdvertisementCard from "@/Components/BlogDetailsPage/AdvertisementCard/AdvertisementCard";
+// import AdvertisementCard from "@/Components/BlogDetailsPage/AdvertisementCard/AdvertisementCard";
 import TableOfContents from "@/Components/BlogDetailsPage/TableOfContents/TableOfContents";
 import Loader from "@/Components/Loader/Loader";
+import { ICONS } from "@/public/assets";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const BlogDetailPage = ({ params }: { params: { id: string } }) => {
@@ -29,15 +31,15 @@ const BlogDetailPage = ({ params }: { params: { id: string } }) => {
     );
   }
 
-  const advertisement = {
-    description: "Get Travel bookings done in a jiffy at flat 30% OFF",
-    buttonText: "Book Now",
-  };
+  // const advertisement = {
+  //   description: "Get Travel bookings done in a jiffy at flat 30% OFF",
+  //   buttonText: "Book Now",
+  // };
 
-  return <BlogContent blog={blog} advertisement={advertisement} />;
+  return <BlogContent blog={blog} />;
 };
 
-const BlogContent = ({ blog, advertisement }: any) => {
+const BlogContent = ({ blog }: any) => {
   const [contentWithIds, setContentWithIds] = useState<string>(blog.content);
 
   const addIdsToHeadings = (htmlContent: string) => {
@@ -67,6 +69,13 @@ const BlogContent = ({ blog, advertisement }: any) => {
           {blog.title}
         </h1>
 
+        {/* Breadcrumbs */}
+        <div className="flex items-center gap-3 text-sm font-Inter mt-1">
+          <Link href={"/"} className="text-primary-10 hover:underline">Home</Link>
+         <Image src={ICONS.rightArrow2} alt="right-arrow" className="size-3"/>
+          <Link href={`/category/${blog?.category?.name}`} className="text-primary-10 hover:underline font-medium">{blog?.category?.name}</Link>
+        </div>
+
         {/* Blog Image */}
         <div className="relative w-full h-[200px] md:h-[400px] xl:h-[600px] px-0 md:px-8 xl:px-0 mt-3">
           <Image
@@ -82,18 +91,16 @@ const BlogContent = ({ blog, advertisement }: any) => {
 
         {/* Blog Content and Right Sidebar */}
         <div className="flex flex-col xl:flex-row gap-[45px] mt-0 md:mt-[30px]">
-          <div className="flex flex-col md:flex-row gap-10 md:gap-8 px-0 md:px-8 xl:px-0">
-            <div className="">
+            {/* <div className="">
               <AdvertisementCard
                 description={advertisement.description}
                 buttonText={advertisement.buttonText}
               />
-            </div>
+            </div> */}
             {/* Scrollable Table of Contents */}
-            <div className="block xl:hidden px-4 md:px-0 xl:px-0">
+            <div className="block xl:hidden px-0 md:px-8 xl:px-0">
               <TableOfContents blog={blog} />
             </div>
-          </div>
 
           <div
             className="text-gray-700 flex-1 px-4 md:px-8 xl:px-0"
