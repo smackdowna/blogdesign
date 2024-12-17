@@ -89,6 +89,8 @@ const BlogContent = ({ blog }: any) => {
           />
         </div>
 
+        {/* <img src={blog.thumbnail?.thumbnailUrl || "/default-thumbnail.jpg"} alt={blog.title} className="" /> */}
+
         {/* Blog Content and Right Sidebar */}
         <div className="flex flex-col xl:flex-row gap-[45px] mt-0 md:mt-[30px]">
             {/* <div className="">
