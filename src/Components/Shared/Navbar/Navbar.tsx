@@ -80,7 +80,7 @@ const Navbar = () => {
           href={"/"}
           className="flex items-center gap-2 font-bold text-xl leading-[32px]"
         >
-          <Image src={ICONS.logo} alt="blog-logo" className="size-20" />
+          <Image src={ICONS.logo2} alt="blog-logo" className="size-20" />
           {/* Blog */}
         </Link>
 

@@ -1,5 +1,6 @@
 // Importing icons
 import logo from "./Icons/Logo.svg";
+import logo2 from "./Icons/Logo another color.svg";
 import footerLogo from "./Icons/i_logo.svg";
 import searchIcon from "./Icons/search-icon.svg";
 import rightArrow from "./Icons/right-arrow.svg";
@@ -33,6 +34,7 @@ import author from "./Images/author.jpg";
 
 export const ICONS = {
     logo,
+    logo2,
     footerLogo,
     searchIcon,
     rightArrow,
